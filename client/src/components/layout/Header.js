@@ -27,13 +27,14 @@ const HeaderContainer = styled.nav`
   position: fixed;
   top: 0;
   /* box-shadow: 0px 4px 20px #ececec; */
-  background-color: #fcfcfc;
+  /* background-color: #fcfcfc; */
   z-index: 100;
 `;
 const HLaptop = styled.main`
-  max-width: 1280px;
+  max-width: 100%;
   height: 100px;
   margin: 0 auto;
+  padding: 0 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
