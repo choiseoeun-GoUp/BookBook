@@ -2,7 +2,7 @@ import React from "react";
 import styled, { css } from "styled-components";
 const SIZES = {
   sm: css`
-    --button-padding: 8px 30px;
+    --button-padding: 8px 40px;
   `,
   md: css`
     --button-padding: 8px 60px;
