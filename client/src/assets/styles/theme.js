@@ -9,7 +9,12 @@ const fontSizes = {
   xl: calcRem(20),
   xxl: calcRem(22),
   xxxl: calcRem(24),
+  xxxxl: calcRem(28),
   LogoSize: calcRem(40),
+  titleS: calcRem(50),
+  titleBase: calcRem(60),
+  titleXl: calcRem(70),
+  titleLg: calcRem(90),
 };
 
 const paddings = {
@@ -19,6 +24,7 @@ const paddings = {
   xl: calcRem(14),
   xxl: calcRem(16),
   xxxl: calcRem(18),
+  new: calcRem(70),
 };
 
 const margins = {
@@ -50,7 +56,7 @@ const deviceSizes = {
 
 const colors = {
   White: "hsl(0, 0%, 100%)",
-  Gray_010: "#F2F2F2",
+  Gray_010: "#F0F0F0",
   Gray_020: "#CECECE",
   Gray_030: "#AEAEB2",
   Gray_040: "#8E8E93",

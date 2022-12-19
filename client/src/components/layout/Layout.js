@@ -8,15 +8,17 @@ const Layout = () => {
   return (
     <Container>
       <Header />
-      <MainSection>
+      <MainContent>
+        <Outlet />
+      </MainContent>
+      <OutLine>
         <p className="bg-line-1"></p>
         <p className="bg-line-2"></p>
         <p className="bg-line-3"></p>
         <p className="bg-line-4"></p>
         <p className="bg-line-5"></p>
         <p className="bg-circle"></p>
-        <Outlet />
-      </MainSection>
+      </OutLine>
       <Footer />
     </Container>
   );
@@ -26,18 +28,21 @@ export default Layout;
 const Container = styled.div`
   width: 100%;
   height: 100%;
-  position: relative;
-  background-color: #fcfcfc;
+  display: flex;
+  flex-direction: column;
 `;
-const MainSection = styled.section`
-  margin: 0 auto;
-  max-width: 100%;
-  min-height: 1000px;
+const MainContent = styled.section`
   margin-top: 100px;
+  position: relative;
+  z-index: 1;
+  flex: 1;
+`;
 
+const OutLine = styled.div`
+  z-index: -1;
   .bg-line-1 {
     width: 0.5px;
-    height: 100%;
+    height: 150%;
     background-color: #d2d2d2;
     position: absolute;
     top: -100px;
@@ -45,7 +50,7 @@ const MainSection = styled.section`
   }
   .bg-line-2 {
     width: 0.5px;
-    height: 100%;
+    height: 150%;
     background-color: #d2d2d2;
     position: absolute;
     top: -100px;
@@ -53,7 +58,7 @@ const MainSection = styled.section`
   }
   .bg-line-3 {
     width: 0.5px;
-    height: 100%;
+    height: 150%;
     background-color: #d2d2d2;
     position: absolute;
     top: -100px;
@@ -61,7 +66,7 @@ const MainSection = styled.section`
   }
   .bg-line-4 {
     width: 0.5px;
-    height: 100%;
+    height: 150%;
     background-color: #d2d2d2;
     position: absolute;
     top: -100px;
@@ -73,7 +78,7 @@ const MainSection = styled.section`
     border-radius: 50%;
     border: 0.5px solid #d2d2d2;
     position: absolute;
-    top: 50px;
+    top: 150px;
     right: 400px;
   }
 `;

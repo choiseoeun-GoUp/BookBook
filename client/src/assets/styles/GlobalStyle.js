@@ -21,6 +21,7 @@ const GlobalStyle = createGlobalStyle`
     line-height: 1.5;
     font-size:16px ;
     color: #1C1C1E;
+    background-color: #fcfcfc;
   }
   h1, h2, h3, h4, h5, h6 {
     font-size: revert;

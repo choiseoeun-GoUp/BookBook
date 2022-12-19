@@ -18,10 +18,8 @@ export default Footer;
 const FooterContainer = styled.footer`
   width: 100%;
   height: 350px;
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  background-color: ${({ theme }) => theme.colors.Gray_030};
+  margin-top: auto;
+  background-color: ${({ theme }) => theme.colors.Gray_020};
   display: flex;
   justify-content: center;
   align-items: center;
