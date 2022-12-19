@@ -1,19 +1,43 @@
 import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
     <HeaderContainer>
       <HLaptop>
-        <HLogo>
-          Book<span className="first-color">B</span>
-          <span className="second-color">o</span>
-          <span className="third-color">o</span>k
-        </HLogo>
+        <NavLink to="/">
+          <HLogo>
+            Book<span className="first-color">B</span>
+            <span className="second-color">o</span>
+            <span className="third-color">o</span>k
+          </HLogo>
+        </NavLink>
         <HMenu>
-          <li>Category</li>
-          <li>Book Rental</li>
-          <li>WishList</li>
+          <li>
+            <NavLink
+              to="/category"
+              className={({ isActive }) => (isActive ? "selected" : "not")}
+            >
+              Category
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/bookrental"
+              className={({ isActive }) => (isActive ? "selected" : "not")}
+            >
+              Book Rental
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/wishlist"
+              className={({ isActive }) => (isActive ? "selected" : "not")}
+            >
+              WishList
+            </NavLink>
+          </li>
         </HMenu>
       </HLaptop>
     </HeaderContainer>
@@ -25,8 +49,6 @@ const HeaderContainer = styled.nav`
   width: 100%;
   position: fixed;
   top: 0;
-  /* box-shadow: 0px 4px 20px #ececec; */
-  /* background-color: #fcfcfc; */
   z-index: 100;
 `;
 const HLaptop = styled.main`
@@ -41,6 +63,7 @@ const HLaptop = styled.main`
 const HLogo = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.LogoSize};
   font-family: "GodoM", "Arial", sans-serif;
+  color: ${({ theme }) => theme.colors.Gray_090};
   .first-color {
     color: ${({ theme }) => theme.colors.Orange_040};
   }
@@ -62,14 +85,14 @@ const HMenu = styled.ul`
     cursor: pointer;
   }
 
-  /* .not {
+  .not {
     color: ${({ theme }) => theme.colors.Gray_090};
     &:hover {
-      color: ${({ theme }) => theme.colors.Blue_030};
+      color: ${({ theme }) => theme.colors.Orange_040};
     }
   }
   .selected {
-    color: ${({ theme }) => theme.colors.Blue_030};
+    color: ${({ theme }) => theme.colors.Orange_040};
     font-weight: 700;
-  } */
+  }
 `;
