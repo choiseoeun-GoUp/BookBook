@@ -93,10 +93,6 @@ const BookRentalList = styled.section`
     font-size: ${({ theme }) => theme.fontSizes.LogoSize};
     font-family: "GodoM", "Arial", sans-serif;
   }
-  p {
-    font-size: ${({ theme }) => theme.fontSizes.xl};
-    color: ${({ theme }) => theme.colors.Gray_050};
-  }
 `;
 
 const BookList = styled.div`
@@ -106,7 +102,7 @@ const BookList = styled.div`
   padding: 20px;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 20px;
+  gap: 30px;
 
   .itemgrid {
     display: flex;
