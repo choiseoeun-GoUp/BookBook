@@ -42,7 +42,7 @@ const OutLine = styled.div`
   z-index: -1;
   .bg-line-1 {
     width: 0.5px;
-    height: 150%;
+    height: 200%;
     background-color: #d2d2d2;
     position: absolute;
     top: -100px;

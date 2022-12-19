@@ -7,6 +7,7 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "./Recommend.css";
+import BestImage from "../../assets/images/베스트셀러 책.png";
 
 const MBestSeller = () => {
   return (
@@ -42,19 +43,49 @@ const MBestSeller = () => {
           }}
         >
           <StyleSwipper>
-            <div></div>
+            <MBestBox>
+              <img src={BestImage} />
+              <div className="best-cotents">
+                <h3>목포 여행 레시피</h3>
+                <p>양다솔</p>
+              </div>
+            </MBestBox>
           </StyleSwipper>
           <StyleSwipper>
-            <div></div>
+            <MBestBox>
+              <img src={BestImage} />
+              <div className="best-cotents">
+                <h3>목포 여행 레시피</h3>
+                <p>양다솔</p>
+              </div>
+            </MBestBox>
           </StyleSwipper>
           <StyleSwipper>
-            <div></div>
+            <MBestBox>
+              <img src={BestImage} />
+              <div className="best-cotents">
+                <h3>목포 여행 레시피</h3>
+                <p>양다솔</p>
+              </div>
+            </MBestBox>
           </StyleSwipper>
           <StyleSwipper>
-            <div></div>
+            <MBestBox>
+              <img src={BestImage} />
+              <div className="best-cotents">
+                <h3>목포 여행 레시피</h3>
+                <p>양다솔</p>
+              </div>
+            </MBestBox>
           </StyleSwipper>
           <StyleSwipper>
-            <div></div>
+            <MBestBox>
+              <img src={BestImage} />
+              <div className="best-cotents">
+                <h3>목포 여행 레시피</h3>
+                <p>양다솔</p>
+              </div>
+            </MBestBox>
           </StyleSwipper>
           <PointBox></PointBox>
         </SwiperBox>
@@ -96,18 +127,32 @@ const SwiperBox = styled(Swiper)`
 `;
 const PointBox = styled.div`
   width: 360px;
-  height: 500px;
+  height: 510px;
   background-color: ${({ theme }) => theme.colors.Gray_010};
   position: absolute;
-  top: 20px;
+  top: 10px;
   left: 39%;
 `;
 const StyleSwipper = styled(SwiperSlide)`
   cursor: pointer;
-  height: 420px;
-  div {
-    width: 100%;
-    height: 420px;
-    background-color: #ccc;
+  padding-bottom: 30px;
+`;
+
+const MBestBox = styled.div`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  img {
+    overflow: hidden;
+  }
+  .best-cotents {
+    text-align: center;
+    padding: 20px 0;
+    h3 {
+      font-weight: bold;
+      font-size: ${({ theme }) => theme.fontSizes.lg};
+    }
   }
 `;
