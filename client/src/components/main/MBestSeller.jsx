@@ -132,6 +132,7 @@ const PointBox = styled.div`
   position: absolute;
   top: 10px;
   left: 39%;
+  border-radius: 20px;
 `;
 const StyleSwipper = styled(SwiperSlide)`
   cursor: pointer;

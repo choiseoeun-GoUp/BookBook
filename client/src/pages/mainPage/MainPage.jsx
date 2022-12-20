@@ -41,17 +41,19 @@ export default MainPage;
 const MainContainer = styled.main`
   section {
     padding: 0 30px;
+    margin: 0 auto;
   }
 `;
 
 // 첫번째 컨테이너
 
 const MFirstContainer = styled.section`
+  /* max-width: 1280px; */
   display: flex;
   justify-content: space-between;
 `;
 const MainText = styled.div`
-  width: 50%;
+  width: 60%;
   padding-top: 10%;
   padding-left: 14px;
   div {

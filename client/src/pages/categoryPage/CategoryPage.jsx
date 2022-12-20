@@ -141,8 +141,8 @@ const CategoryContents = styled.div`
       width: 100%;
       height: 420px;
       overflow: hidden;
-      border: 2px solid ${({ theme }) => theme.colors.Gray_020};
-      border-radius: 20px;
+      border: 1px solid ${({ theme }) => theme.colors.Gray_010};
+      /* border-radius: 20px; */
     }
     .bottom-contents-info {
       width: 100%;

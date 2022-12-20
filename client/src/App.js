@@ -11,9 +11,8 @@ function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />}></Route>
-        <Route path="/category" element={<CategoryPage />}>
-          <Route path=":id" element={<BookDetailPage />}></Route>
-        </Route>
+        <Route path="/category" element={<CategoryPage />}></Route>
+        <Route path="/category/1" element={<BookDetailPage />}></Route>
         <Route path="/wishlist" element={<WishListPage />}></Route>
         <Route path="/bookrental" element={<BookRentalPage />}></Route>
         <Route path="*" element={<div>NotFound</div>} />
