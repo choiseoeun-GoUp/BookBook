@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import RImage from "../../assets/images/편집자 추천 책.png";
-import Button from "../common/Button";
+import NewButton from "../common/NewButton";
+import { FaHeart } from "react-icons/fa";
 
 const MRecommendList = () => {
   return (
@@ -49,12 +50,13 @@ const MRecommendList = () => {
                 작가의 희비극을 담은 첫 에세이다. 독립출판물을 전시하고 판매하
               </div>
               <div className="button-box">
-                <Button color="Orange_040" size="md">
+                <NewButton type="reverse" size="md">
+                  <span>
+                    <FaHeart size={14} />
+                  </span>
                   좋아요
-                </Button>
-                <Button color="Green_040" size="lg">
-                  자세히 보기
-                </Button>
+                </NewButton>
+                <NewButton size="lg">자세히 보기</NewButton>
               </div>
             </div>
             <div className="recommend-color-box"></div>

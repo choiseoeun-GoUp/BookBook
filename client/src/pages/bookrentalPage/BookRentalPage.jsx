@@ -2,7 +2,9 @@ import React from "react";
 import styled from "styled-components";
 import RentalListImage from "../../assets/images/대여목록 책.png";
 import RentalListImage2 from "../../assets/images/베스트셀러 책.png";
-import Button from "../../components/common/Button";
+import NewButton from "../../components/common/NewButton";
+import { IoCaretBack } from "react-icons/io5";
+
 const BookRentalPage = () => {
   return (
     <>
@@ -17,7 +19,12 @@ const BookRentalPage = () => {
               <h3>목포 여행 레시피</h3>
               <p>양다솔</p>
             </div>
-            <Button size="sm">반납하기</Button>
+            <NewButton type="reverse" size="sm">
+              <span>
+                <IoCaretBack className="back-icon" size={20} />
+              </span>
+              반납하기
+            </NewButton>
           </div>
           <div className="itemgrid">
             <img src={RentalListImage2} />
@@ -25,7 +32,12 @@ const BookRentalPage = () => {
               <h3>목포 여행 레시피</h3>
               <p>양다솔</p>
             </div>
-            <Button size="sm">반납하기</Button>
+            <NewButton type="reverse" size="sm">
+              <span>
+                <IoCaretBack className="back-icon" size={20} />
+              </span>
+              반납하기
+            </NewButton>
           </div>
           <div className="itemgrid">
             <img src={RentalListImage} />
@@ -33,7 +45,12 @@ const BookRentalPage = () => {
               <h3>목포 여행 레시피</h3>
               <p>양다솔</p>
             </div>
-            <Button size="sm">반납하기</Button>
+            <NewButton type="reverse" size="sm">
+              <span>
+                <IoCaretBack className="back-icon" size={20} />
+              </span>
+              반납하기
+            </NewButton>
           </div>
           <div className="itemgrid">
             <img src={RentalListImage2} />
@@ -41,7 +58,12 @@ const BookRentalPage = () => {
               <h3>목포 여행 레시피</h3>
               <p>양다솔</p>
             </div>
-            <Button size="sm">반납하기</Button>
+            <NewButton type="reverse" size="sm">
+              <span>
+                <IoCaretBack className="back-icon" size={20} />
+              </span>
+              반납하기
+            </NewButton>
           </div>
           <div className="itemgrid">
             <img src={RentalListImage} />
@@ -49,7 +71,12 @@ const BookRentalPage = () => {
               <h3>목포 여행 레시피</h3>
               <p>양다솔</p>
             </div>
-            <Button size="sm">반납하기</Button>
+            <NewButton type="reverse" size="sm">
+              <span>
+                <IoCaretBack className="back-icon" size={20} />
+              </span>
+              반납하기
+            </NewButton>
           </div>
           <div className="itemgrid">
             <img src={RentalListImage2} />
@@ -57,7 +84,12 @@ const BookRentalPage = () => {
               <h3>목포 여행 레시피</h3>
               <p>양다솔</p>
             </div>
-            <Button size="sm">반납하기</Button>
+            <NewButton type="reverse" size="sm">
+              <span>
+                <IoCaretBack className="back-icon" size={20} />
+              </span>
+              반납하기
+            </NewButton>
           </div>
           <div className="itemgrid">
             <img src={RentalListImage} />
@@ -65,7 +97,12 @@ const BookRentalPage = () => {
               <h3>목포 여행 레시피</h3>
               <p>양다솔</p>
             </div>
-            <Button size="sm">반납하기</Button>
+            <NewButton type="reverse" size="sm">
+              <span>
+                <IoCaretBack className="back-icon" size={20} />
+              </span>
+              반납하기
+            </NewButton>
           </div>
           <div className="itemgrid">
             <img src={RentalListImage2} />
@@ -73,7 +110,12 @@ const BookRentalPage = () => {
               <h3>목포 여행 레시피</h3>
               <p>양다솔</p>
             </div>
-            <Button size="sm">반납하기</Button>
+            <NewButton type="reverse" size="sm">
+              <span>
+                <IoCaretBack className="back-icon" size={20} />
+              </span>
+              반납하기
+            </NewButton>
           </div>
         </BookList>
       </BookRentalList>
@@ -122,6 +164,10 @@ const BookList = styled.div`
         font-weight: bold;
         font-size: ${({ theme }) => theme.fontSizes.lg};
       }
+    }
+    .back-icon {
+      position: relative;
+      top: 3px;
     }
   }
 `;
