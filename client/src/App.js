@@ -1,3 +1,4 @@
+import React, { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
 import Layout from "./components/layout/Layout";
 import MainPage from "./pages/mainPage/MainPage";
@@ -7,12 +8,37 @@ import BookDetailPage from "./pages/bookdetailPage/BookDetailPage";
 import BookRentalPage from "./pages/bookrentalPage/BookRentalPage";
 
 function App() {
+  const [itemData, setitemData] = useState([]);
+  const getContents = () => {
+    fetch(
+      `http://apis.data.go.kr/4050000/libebook/getLibebook?serviceKey=ivsTBybg%2FyaUtUrc5%2F6%2BJvWhOVLbJefA9Q9YegAX0e2vDPOrpN4KzJDQ8FmDDjB5eMwzlirugCRw%2BqEOQb3SOg%3D%3D&pageNo=1&numOfRows=10`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setitemData(data);
+        // console.log(data.items);
+      })
+      .catch((e) => {
+        console.log(`에러 캐치! ${e}`);
+      });
+  };
+
+  useEffect(() => {
+    getContents();
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<MainPage />}></Route>
-        <Route path="/category" element={<CategoryPage />}></Route>
-        <Route path="/category/1" element={<BookDetailPage />}></Route>
+        <Route
+          path="/category"
+          element={<CategoryPage itemData={itemData} />}
+        ></Route>
+        <Route
+          path="/category:id"
+          element={<BookDetailPage itemData={itemData} />}
+        ></Route>
         <Route path="/wishlist" element={<WishListPage />}></Route>
         <Route path="/bookrental" element={<BookRentalPage />}></Route>
         <Route path="*" element={<div>NotFound</div>} />

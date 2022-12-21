@@ -1,33 +1,60 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import styled from "styled-components";
+import { useParams } from "react-router-dom";
 import Image from "../../assets/images/대여목록 책.png";
 import Button from "../../components/common/Button";
 
-const BookDetailPage = () => {
+const BookDetailPage = ({ itemData }) => {
+  // const id = 2;
+  // const [itemData, setitemData] = useState([]);
+  // const getContents = () => {
+  //   fetch(
+  //     `http://apis.data.go.kr/4050000/libebook/getLibebook?serviceKey=ivsTBybg%2FyaUtUrc5%2F6%2BJvWhOVLbJefA9Q9YegAX0e2vDPOrpN4KzJDQ8FmDDjB5eMwzlirugCRw%2BqEOQb3SOg%3D%3D&pageNo=1&numOfRows=10`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setitemData(data.items);
+  //       // console.log(data.items);
+  //     })
+  //     .catch((e) => {
+  //       console.log(`에러 캐치! ${e}`);
+  //     });
+  // };
+
+  console.log(itemData);
+  useEffect(() => {
+    filterItem();
+  }, [itemData]);
+
+  const filterItem = () =>
+    itemData && itemData.filter((arr, index) => arr.no === id);
+  // console.log(filterItem[0]);
+  let { id } = useParams();
+
   return (
     <>
       <DetailContainer>
         <DetailImage>
           <p className="back-btn">되돌아가기</p>
-          <img src={Image} />
+          <img src={Image} alt="책 표지" />
         </DetailImage>
         <DetaileContents>
           <p className="category-btn">
             카테고리 <span>〉</span>
-            <span> 한국 에세이</span>
+            <span> {filterItem && filterItem[0].gnr}</span>
           </p>
           <div className="title-box">
             <div className="title">
-              <h2>가난해지지 않는 마음</h2>
-              <p>2021-10-01</p>
+              <h2>{filterItem && filterItem[0].ebk_nm}</h2>
+              {/* <p>{filterItem[0].pblsh_ymd}</p> */}
             </div>
             <div className="title-sub">
               <div className="author-info">
                 <p>
-                  저자명 : <span>양다솔</span>
+                  저자명 : <span>{filterItem && filterItem[0].aut_nm}</span>
                 </p>
                 <p>
-                  출판사 : <span>놀</span>
+                  출판사 : <span>{filterItem && filterItem[0].pblshr}</span>
                 </p>
               </div>
               <div className="add-wishlist">위시리스트에 추가하세요</div>
@@ -36,40 +63,7 @@ const BookDetailPage = () => {
           <div className="contents-box">
             <h2>Description</h2>
             <div className="book-info-box">
-              지금 당장 직업도; 먹고살 돈도 없지만나는 시간이 지나도 이상하게도;
-              전혀 가난해지지 않는다.어쩌면 나의 조상은 수렵채집인인지도 모른다.
-              오늘의 먹을거리와 머물 곳을 찾아다니며; 하루를 하나의 삶처럼
-              살아내던 이들.나는 다음 날; 다음 해도 아닌 당장 오늘 하루를 잘
-              보내는 방법에 대해 알고 있었다. _본문 중에서도시에서 살아가는 20대
-              여성의 기쁨과 슬픔을 담아내는 새로운 목소리가 등장했다. 놀에서
-              출간된 『가난해지지 않는 마음』은 결코 가난해질 수 없는 풍요로운
-              마음을 지닌 양다솔 작가의 희비극을 담은 첫 에세이다. 독립출판물을
-              전시하고 판매하지금 당장 직업도; 먹고살 돈도 없지만나는 시간이
-              지나도 이상하게도; 전혀 가난해지지 않는다.어쩌면 나의 조상은
-              수렵채집인인지도 모른다. 오늘의 먹을거리와 머물 곳을 찾아다니며;
-              하루를 하나의 삶처럼 살아내던 이들.나는 다음 날; 다음 해도 아닌
-              당장 오늘 하루를 잘 보내는 방법에 대해 알고 있었다. _본문
-              중에서도시에서 살아가는 20대 여성의 기쁨과 슬픔을 담아내는 새로운
-              목소리가 등장했다. 놀에서 출간된 『가난해지지 않는 마음』은 결코
-              가난해질 수 없는 풍요로운 마음을 지닌 양다솔 작가의 희비극을 담은
-              첫 에세이다. 독립출판물을 전시하고 판매하지금 당장 직업도; 먹고살
-              돈도 없지만나는 시간이 지나도 이상하게도; 전혀 가난해지지
-              않는다.어쩌면 나의 조상은 수렵채집인인지도 모른다. 오늘의
-              먹을거리와 머물 곳을 찾아다니며; 하루를 하나의 삶처럼 살아내던
-              이들.나는 다음 날; 다음 해도 아닌 당장 오늘 하루를 잘 보내는
-              방법에 대해 알고 있었다. _본문 중에서도시에서 살아가는 20대 여성의
-              기쁨과 슬픔을 담아내는 새로운 목소리가 등장했다. 놀에서 출간된
-              『가난해지지 않는 마음』은 결코 가난해질 수 없는 풍요로운 마음을
-              지닌 양다솔 작가의 희비극을 담은 첫 에세이다. 독립출판물을
-              전시하고 판매하지금 당장 직업도; 먹고살 돈도 없지만나는 시간이
-              지나도 이상하게도; 전혀 가난해지지 않는다.어쩌면 나의 조상은
-              수렵채집인인지도 모른다. 오늘의 먹을거리와 머물 곳을 찾아다니며;
-              하루를 하나의 삶처럼 살아내던 이들.나는 다음 날; 다음 해도 아닌
-              당장 오늘 하루를 잘 보내는 방법에 대해 알고 있었다. _본문
-              중에서도시에서 살아가는 20대 여성의 기쁨과 슬픔을 담아내는 새로운
-              목소리가 등장했다. 놀에서 출간된 『가난해지지 않는 마음』은 결코
-              가난해질 수 없는 풍요로운 마음을 지닌 양다솔 작가의 희비극을 담은
-              첫 에세이다. 독립출판물을 전시하고 판매하
+              {filterItem && filterItem[0].cn_intro}
             </div>
           </div>
           <div className="button-box">

@@ -1,78 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import RentalListImage from "../../assets/images/대여목록 책.png";
-import RentalListImage2 from "../../assets/images/베스트셀러 책.png";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
-import RentalMark from "../../assets/images/대여마크.png";
+import CategoryItem from "../../components/category/CategoryItem";
 
-const CategoryPage = () => {
+const CategoryPage = ({ itemData }) => {
+  // const [itemData, setitemData] = useState([]);
+  // const getContents = () => {
+  //   fetch(
+  //     `http://apis.data.go.kr/4050000/libebook/getLibebook?serviceKey=ivsTBybg%2FyaUtUrc5%2F6%2BJvWhOVLbJefA9Q9YegAX0e2vDPOrpN4KzJDQ8FmDDjB5eMwzlirugCRw%2BqEOQb3SOg%3D%3D&pageNo=1&numOfRows=10`
+  //   )
+  //     .then((res) => res.json())
+  //     .then((data) => {
+  //       setitemData(data);
+  //     })
+  //     .catch((e) => {
+  //       console.log(`에러 캐치! ${e}`);
+  //     });
+  // };
+
+  // useEffect(() => {
+  //   getContents();
+  // }, []);
+
   return (
     <CategoryContainer>
       <section className="category-content-box">
         <CategoryTabList>
           <h2>Category</h2>
           <ul>
-            <li>ddddd</li>
-            <li>ddddd</li>
-            <li>ddddd</li>
-            <li>ddddd</li>
-            <li>ddddd</li>
-            <li>ddddd</li>
+            {itemData.items &&
+              itemData.items
+                .filter(
+                  (arr, index, callback) =>
+                    index === callback.findIndex((t) => t.gnr === arr.gnr)
+                )
+                .map((el, index) => <li key={index}>{el.gnr}</li>)}
           </ul>
         </CategoryTabList>
         <CategoryContents>
-          <div className="itemgrid">
-            <img src={RentalMark} className="rental-mark" />
-            <img src={RentalListImage} className="rental-image" alt="책 제목" />
-            <div className="bottom-contents-info">
-              <div className="best-cotents">
-                <h3>목포 여행 레시피</h3>
-                <p>양다솔</p>
-              </div>
-              <Button>
-                <FaHeart className="heartFill" size={27} color="#CECECE" />
-              </Button>
-            </div>
-          </div>
-          <div className="itemgrid">
-            <img src={RentalMark} className="rental-mark" />
-            <img src={RentalListImage} className="rental-image" alt="책 제목" />
-            <div className="bottom-contents-info">
-              <div className="best-cotents">
-                <h3>목포 여행 레시피</h3>
-                <p>양다솔</p>
-              </div>
-              <Button>
-                <FaHeart className="heartFill" size={27} color="#CECECE" />
-              </Button>
-            </div>
-          </div>
-          <div className="itemgrid">
-            <img src={RentalMark} className="rental-mark" />
-            <img src={RentalListImage} className="rental-image" alt="책 제목" />
-            <div className="bottom-contents-info">
-              <div className="best-cotents">
-                <h3>목포 여행 레시피</h3>
-                <p>양다솔</p>
-              </div>
-              <Button>
-                <FaHeart className="heartFill" size={27} color="#CECECE" />
-              </Button>
-            </div>
-          </div>
-          <div className="itemgrid">
-            <img src={RentalMark} className="rental-mark" />
-            <img src={RentalListImage} className="rental-image" alt="책 제목" />
-            <div className="bottom-contents-info">
-              <div className="best-cotents">
-                <h3>목포 여행 레시피</h3>
-                <p>양다솔</p>
-              </div>
-              <Button>
-                <FaHeart className="heartFill" size={27} color="#CECECE" />
-              </Button>
-            </div>
-          </div>
+          {itemData.items &&
+            itemData.items.map((el) => {
+              return (
+                <div className="itemgrid">
+                  <CategoryItem data={el} key={el.no} />
+                </div>
+              );
+            })}
         </CategoryContents>
       </section>
     </CategoryContainer>
@@ -123,7 +95,7 @@ const CategoryTabList = styled.div`
 const CategoryContents = styled.div`
   flex: 3.5 1 0;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
   .itemgrid {
     display: flex;
@@ -131,46 +103,5 @@ const CategoryContents = styled.div`
     align-items: center;
     flex-direction: column;
     position: relative;
-    .rental-mark {
-      position: absolute;
-      top: -25px;
-      left: -25px;
-      border: none;
-    }
-    .rental-image {
-      width: 100%;
-      height: 420px;
-      overflow: hidden;
-      border: 1px solid ${({ theme }) => theme.colors.Gray_010};
-      /* border-radius: 20px; */
-    }
-    .bottom-contents-info {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 20px 0;
-      .best-cotents {
-        text-align: left;
-        h3 {
-          font-weight: bold;
-          font-size: ${({ theme }) => theme.fontSizes.lg};
-        }
-      }
-    }
-  }
-`;
-
-const Button = styled.button`
-  width: 50px;
-  height: 50px;
-  border-radius: 50px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  border: 2px solid ${({ theme }) => theme.colors.Gray_020};
-  background-color: #fff;
-  &:hover {
-    border: 2px solid ${({ theme }) => theme.colors.Orange_040};
-    background-color: ${({ theme }) => theme.colors.Orange_040};
   }
 `;
