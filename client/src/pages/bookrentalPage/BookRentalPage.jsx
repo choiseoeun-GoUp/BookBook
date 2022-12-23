@@ -4,8 +4,10 @@ import RentalListImage from "../../assets/images/대여목록 책.png";
 import RentalListImage2 from "../../assets/images/베스트셀러 책.png";
 import NewButton from "../../components/common/NewButton";
 import { IoCaretBack } from "react-icons/io5";
+import { toast, ToastContainer } from "react-toastify";
 
 const BookRentalPage = () => {
+  const notify = () => toast("💁🏻 반납하는 중 입니다. ");
   return (
     <>
       <BookRentalList>
@@ -151,6 +153,7 @@ const BookList = styled.div`
     justify-content: center;
     align-items: center;
     flex-direction: column;
+
     img {
       width: 100%;
       height: 420px;

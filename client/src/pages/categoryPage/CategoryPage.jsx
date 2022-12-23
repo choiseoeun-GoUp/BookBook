@@ -3,24 +3,6 @@ import styled from "styled-components";
 import CategoryItem from "../../components/category/CategoryItem";
 
 const CategoryPage = ({ itemData }) => {
-  // const [itemData, setitemData] = useState([]);
-  // const getContents = () => {
-  //   fetch(
-  //     `http://apis.data.go.kr/4050000/libebook/getLibebook?serviceKey=ivsTBybg%2FyaUtUrc5%2F6%2BJvWhOVLbJefA9Q9YegAX0e2vDPOrpN4KzJDQ8FmDDjB5eMwzlirugCRw%2BqEOQb3SOg%3D%3D&pageNo=1&numOfRows=10`
-  //   )
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       setitemData(data);
-  //     })
-  //     .catch((e) => {
-  //       console.log(`에러 캐치! ${e}`);
-  //     });
-  // };
-
-  // useEffect(() => {
-  //   getContents();
-  // }, []);
-
   return (
     <CategoryContainer>
       <section className="category-content-box">
@@ -63,7 +45,6 @@ const CategoryContainer = styled.section`
     width: 1280px;
     min-height: 500px;
     display: flex;
-    /* background-color: blue; */
   }
 `;
 
@@ -75,6 +56,7 @@ const CategoryTabList = styled.div`
   margin-right: 30px;
   text-align: center;
   padding: 20px 4px;
+  background-color: #fcfcfc;
   h2 {
     font-size: ${({ theme }) => theme.fontSizes.xxxxl};
     font-family: "GodoM", "Arial", sans-serif;
