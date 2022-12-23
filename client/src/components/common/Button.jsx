@@ -11,6 +11,9 @@ const SIZES = {
   lg: css`
     --button-padding: 8px 90px;
   `,
+  xl: css`
+    --button-padding: 8px 140px;
+  `,
 };
 
 const StyledButton = styled.button`

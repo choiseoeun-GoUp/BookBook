@@ -1,8 +1,10 @@
 import React from "react";
+import { useEffect } from "react";
 import styled from "styled-components";
 import MainImageBook from "../../assets/images/메인 이미지.png";
 import MBestSeller from "../../components/main/MBestSeller";
 import MRecommendList from "../../components/main/MRecommendList";
+import { MdOutlineMenuBook } from "react-icons/md";
 
 const MainPage = () => {
   return (
@@ -24,13 +26,26 @@ const MainPage = () => {
               </div>
             </MainText>
             <MainImage>
-              <img src={MainImageBook} />
+              <img src={MainImageBook} alt="이미지" />
             </MainImage>
           </MFirstContainer>
           <MBestSeller />
           <MRecommendList />
         </section>
-        <TextInteraction></TextInteraction>
+        <TextInteraction>
+          <p>
+            BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
+            BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
+            BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
+            BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
+            BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
+            BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
+            BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
+            BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
+            BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
+            BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
+          </p>
+        </TextInteraction>
       </MainContainer>
     </>
   );
@@ -40,7 +55,7 @@ export default MainPage;
 
 const MainContainer = styled.main`
   section {
-    padding: 0 30px;
+    /* padding: 0 30px; */
     margin: 0 auto;
   }
 `;
@@ -48,14 +63,13 @@ const MainContainer = styled.main`
 // 첫번째 컨테이너
 
 const MFirstContainer = styled.section`
-  /* max-width: 1280px; */
+  max-width: 1280px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 const MainText = styled.div`
   width: 60%;
-  padding-top: 10%;
-  padding-left: 14px;
   div {
     .main-title {
       font-size: ${({ theme }) => theme.fontSizes.titleLg};
@@ -76,4 +90,16 @@ const TextInteraction = styled.div`
   height: 50px;
   margin: 100px 0 160px 0;
   background-color: ${({ theme }) => theme.colors.Orange_040};
+  line-height: 50px;
+  padding: 0 20px;
+  p {
+    font-size: ${({ theme }) => theme.fontSizes.xl};
+    width: 100%;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    span {
+      margin: 0 30px;
+    }
+  }
 `;

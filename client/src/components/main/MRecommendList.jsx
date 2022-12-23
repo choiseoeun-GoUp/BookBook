@@ -78,6 +78,7 @@ const MThirdContainer = styled.section`
   .Recommend-title {
     margin-bottom: 50px;
     text-align: center;
+    margin-top: 100px;
     h2 {
       font-size: ${({ theme }) => theme.fontSizes.titleS};
       font-family: "GodoM", "Arial", sans-serif;

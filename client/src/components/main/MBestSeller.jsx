@@ -20,7 +20,7 @@ const MBestSeller = () => {
 
         <SwiperBox
           modules={[Navigation, Pagination, Autoplay]}
-          spaceBetween={66}
+          spaceBetween={30}
           slidesPerView={2}
           navigation
           pagination={{ clickable: true }}
@@ -34,32 +34,14 @@ const MBestSeller = () => {
             },
             1080: {
               slidesPerView: 3,
-              spaceBetween: 70,
+              spaceBetween: 30,
             },
             1280: {
-              slidesPerView: 5,
-              spaceBetween: 66,
+              slidesPerView: 3,
+              spaceBetween: 30,
             },
           }}
         >
-          <StyleSwipper>
-            <MBestBox>
-              <img src={BestImage} />
-              <div className="best-cotents">
-                <h3>목포 여행 레시피</h3>
-                <p>양다솔</p>
-              </div>
-            </MBestBox>
-          </StyleSwipper>
-          <StyleSwipper>
-            <MBestBox>
-              <img src={BestImage} />
-              <div className="best-cotents">
-                <h3>목포 여행 레시피</h3>
-                <p>양다솔</p>
-              </div>
-            </MBestBox>
-          </StyleSwipper>
           <StyleSwipper>
             <MBestBox>
               <img src={BestImage} />
@@ -97,10 +79,10 @@ const MBestSeller = () => {
 export default MBestSeller;
 
 const MSecondContainer = styled.section`
-  margin-bottom: 100px;
   .best-title {
     text-align: center;
     margin-bottom: 50px;
+    margin-top: 150px;
     h2 {
       font-size: ${({ theme }) => theme.fontSizes.titleBase};
       font-family: "GodoM", "Arial", sans-serif;
@@ -110,28 +92,21 @@ const MSecondContainer = styled.section`
       color: ${({ theme }) => theme.colors.Gray_050};
     }
   }
-  .main-best {
-    width: 360px;
-    height: 550px;
-    background-color: ${({ theme }) => theme.colors.Gray_010};
-    position: absolute;
-  }
 `;
 
 const SwiperBox = styled(Swiper)`
-  width: 100%;
-  height: 100%;
-  padding-top: 50px;
-  padding-bottom: 50px;
+  max-width: 1280px;
   position: relative;
+  padding: 50px 0;
 `;
 const PointBox = styled.div`
   width: 360px;
   height: 510px;
   background-color: ${({ theme }) => theme.colors.Gray_010};
   position: absolute;
-  top: 10px;
-  left: 39%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -53%);
   border-radius: 20px;
 `;
 const StyleSwipper = styled(SwiperSlide)`
