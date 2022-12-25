@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 import Image from "../../assets/images/대여목록 책.png";
-import Button from "../../components/common/Button";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import NewButton from "../../components/common/NewButton";
 
 const BookDetailPage = ({ itemData }) => {
   const { id } = useParams();
+
   return (
     <>
       <DetailContainer>
@@ -22,7 +23,7 @@ const BookDetailPage = ({ itemData }) => {
           <div className="title-box">
             <div className="title">
               <h2>{itemData.items[id].ebk_nm}</h2>
-              <p>{itemData.items[id].pblsh_ymd}</p>
+              {/* <p>{itemData.items[id].pblsh_ymd}</p> */}
             </div>
             <div className="title-sub">
               <div className="author-info">
@@ -45,13 +46,25 @@ const BookDetailPage = ({ itemData }) => {
             <h2>Description</h2>
             <div className="book-info-box">{itemData.items[id].cn_intro}</div>
           </div>
+          {itemData.items[id].rsvt_noppl > 11 ? (
+            <p className="rsvt-alert">10명 이상 대여 불가능</p>
+          ) : (
+            ""
+          )}
+
           <div className="button-box">
-            <Button color="Gray_030" size="md">
+            <div color="Gray_030" size="md" className="button-rsvt">
               현재 대여 인원 : {itemData.items[id].rsvt_noppl}
-            </Button>
-            <Button color="Orange_040" size="xl">
-              대여하기
-            </Button>
+            </div>
+            {itemData.items[id].rsvt_noppl > 11 ? (
+              <NewButton disabled size="xl">
+                대여하기
+              </NewButton>
+            ) : (
+              <NewButton color="Orange_040" size="xl" onClick={() => {}}>
+                대여하기
+              </NewButton>
+            )}
           </div>
         </DetaileContents>
       </DetailContainer>
@@ -134,14 +147,14 @@ const DetaileContents = styled.div`
     }
   }
   .contents-box {
-    margin-bottom: 60px;
+    margin-bottom: 40px;
     .book-info-box {
-      /* margin-bottom: 40px; */
       display: -webkit-box;
       display: -ms-flexbox;
       display: box;
       margin-top: 1px;
       max-height: 440px;
+      min-height: 300px;
       overflow: hidden;
       vertical-align: top;
       text-overflow: ellipsis;
@@ -151,9 +164,19 @@ const DetaileContents = styled.div`
       font-size: ${({ theme }) => theme.fontSizes.base};
     }
   }
+  .rsvt-alert {
+    color: ${({ theme }) => theme.colors.Orange_040};
+    text-align: right;
+  }
   .button-box {
     display: flex;
     justify-content: space-between;
     margin-bottom: 20px;
+    .button-rsvt {
+      font-size: ${({ theme }) => theme.fontSizes.base};
+      background-color: ${({ theme }) => theme.colors.Gray_020};
+      padding: 8px 50px;
+      border-radius: 50px;
+    }
   }
 `;

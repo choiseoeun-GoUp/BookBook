@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import CategoryItem from "../../components/category/CategoryItem";
 
@@ -73,8 +73,7 @@ const CategoryContainer = styled.section`
 `;
 
 const CategoryTabList = styled.div`
-  flex: 1 1 0;
-  min-height: 700px;
+  flex: 1 0 0;
   border-radius: 20px;
   border: 2px solid ${({ theme }) => theme.colors.Gray_020};
   margin-right: 30px;
@@ -99,15 +98,12 @@ const CategoryTabList = styled.div`
   }
 `;
 const CategoryContents = styled.div`
-  flex: 3.5 1 0;
+  flex: 3.5 0 0;
+  width: 100%;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
   .itemgrid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
     position: relative;
   }
 `;

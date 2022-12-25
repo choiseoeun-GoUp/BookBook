@@ -11,6 +11,9 @@ const SIZES = {
   lg: css`
     --button-padding: 8px 90px;
   `,
+  xl: css`
+    --button-padding: 8px 140px;
+  `,
 };
 const TYPE = {
   reverse: css`
@@ -47,7 +50,6 @@ const StyledButton = styled.button`
   padding: var(--button-padding, 12px 16px);
   color: var(--button-font-color, #ffffff);
   background: var(--button-bg-color, #ff6737);
-
   &:active,
   &:hover,
   &:focus {
@@ -59,6 +61,7 @@ const StyledButton = styled.button`
     cursor: default;
     opacity: 0.5;
     background: var(--button-bg-color, #ff6737);
+    color: var(--button-font-color, #ffffff);
   }
   span {
     margin-right: 6px;
