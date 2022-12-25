@@ -106,7 +106,7 @@ const PointBox = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -53%);
+  transform: translate(-50%, -54.5%);
   border-radius: 20px;
 `;
 const StyleSwipper = styled(SwiperSlide)`

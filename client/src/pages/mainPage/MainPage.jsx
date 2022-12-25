@@ -16,7 +16,6 @@ const MainPage = () => {
           <MFirstContainer>
             <MainText>
               <div>
-                우웅ㅇ
                 <p className="main-title">
                   오늘 나랑
                   <br />책 한권 할래?
