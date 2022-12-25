@@ -3,30 +3,54 @@ import styled from "styled-components";
 import CategoryItem from "../../components/category/CategoryItem";
 
 const CategoryPage = ({ itemData }) => {
+  const [gnr1, setGnr1] = useState("");
+  const [viewAll, setViewAll] = useState(true);
   return (
     <CategoryContainer>
       <section className="category-content-box">
         <CategoryTabList>
           <h2>Category</h2>
           <ul>
+            <li onClick={() => setViewAll(true)}>All</li>
             {itemData.items &&
               itemData.items
                 .filter(
                   (arr, index, callback) =>
                     index === callback.findIndex((t) => t.gnr === arr.gnr)
                 )
-                .map((el, index) => <li key={index}>{el.gnr}</li>)}
+                .map((el, index) => (
+                  <li
+                    key={index}
+                    onClick={() => {
+                      setGnr1(el.gnr);
+                      setViewAll(false);
+                    }}
+                  >
+                    {el.gnr}
+                  </li>
+                ))}
           </ul>
         </CategoryTabList>
         <CategoryContents>
-          {itemData.items &&
-            itemData.items.map((el) => {
-              return (
-                <div className="itemgrid">
-                  <CategoryItem data={el} key={el.no} />
-                </div>
-              );
-            })}
+          {viewAll
+            ? itemData.items &&
+              itemData.items.map((el) => {
+                return (
+                  <div className="itemgrid">
+                    <CategoryItem data={el} key={el.no} />
+                  </div>
+                );
+              })
+            : itemData.items &&
+              itemData.items
+                .filter((el) => el.gnr === gnr1)
+                .map((el) => {
+                  return (
+                    <div className="itemgrid">
+                      <CategoryItem data={el} key={el.no} />
+                    </div>
+                  );
+                })}
         </CategoryContents>
       </section>
     </CategoryContainer>
