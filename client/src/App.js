@@ -11,7 +11,7 @@ function App() {
   const [itemData, setitemData] = useState([]);
   const getContents = () => {
     fetch(
-      `http://apis.data.go.kr/4050000/libebook/getLibebook?serviceKey=ivsTBybg%2FyaUtUrc5%2F6%2BJvWhOVLbJefA9Q9YegAX0e2vDPOrpN4KzJDQ8FmDDjB5eMwzlirugCRw%2BqEOQb3SOg%3D%3D&pageNo=1&numOfRows=10`
+      `http://apis.data.go.kr/4050000/libebook/getLibebook?serviceKey=ivsTBybg%2FyaUtUrc5%2F6%2BJvWhOVLbJefA9Q9YegAX0e2vDPOrpN4KzJDQ8FmDDjB5eMwzlirugCRw%2BqEOQb3SOg%3D%3D&pageNo=1&numOfRows=30`
     )
       .then((res) => res.json())
       .then((data) => {
@@ -36,7 +36,7 @@ function App() {
           element={<CategoryPage itemData={itemData} />}
         ></Route>
         <Route
-          path="/category:id"
+          path="/category/:id"
           element={<BookDetailPage itemData={itemData} />}
         ></Route>
         <Route path="/wishlist" element={<WishListPage />}></Route>
