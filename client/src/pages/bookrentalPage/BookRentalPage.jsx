@@ -5,9 +5,13 @@ import RentalListImage2 from "../../assets/images/베스트셀러 책.png";
 import NewButton from "../../components/common/NewButton";
 import { IoCaretBack } from "react-icons/io5";
 import { toast, ToastContainer } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { rentalActios } from "../../utils/rentalSlice";
 
 const BookRentalPage = () => {
   const notify = () => toast("💁🏻 반납하는 중 입니다. ");
+  const dispatch = useDispatch();
+  const rental = useSelector((state) => state.rental.rentalValue);
   return (
     <>
       <BookRentalList>
@@ -15,110 +19,26 @@ const BookRentalPage = () => {
           나의 <span>대여</span> 목록
         </h2>
         <BookList>
-          <div className="itemgrid">
-            <img src={RentalListImage} />
-            <div className="best-cotents">
-              <h3>목포 여행 레시피</h3>
-              <p>양다솔</p>
-            </div>
-            <NewButton type="reverse" size="sm">
-              <span>
-                <IoCaretBack className="back-icon" size={20} />
-              </span>
-              반납하기
-            </NewButton>
-          </div>
-          <div className="itemgrid">
-            <img src={RentalListImage2} />
-            <div className="best-cotents">
-              <h3>목포 여행 레시피</h3>
-              <p>양다솔</p>
-            </div>
-            <NewButton type="reverse" size="sm">
-              <span>
-                <IoCaretBack className="back-icon" size={20} />
-              </span>
-              반납하기
-            </NewButton>
-          </div>
-          <div className="itemgrid">
-            <img src={RentalListImage} />
-            <div className="best-cotents">
-              <h3>목포 여행 레시피</h3>
-              <p>양다솔</p>
-            </div>
-            <NewButton type="reverse" size="sm">
-              <span>
-                <IoCaretBack className="back-icon" size={20} />
-              </span>
-              반납하기
-            </NewButton>
-          </div>
-          <div className="itemgrid">
-            <img src={RentalListImage2} />
-            <div className="best-cotents">
-              <h3>목포 여행 레시피</h3>
-              <p>양다솔</p>
-            </div>
-            <NewButton type="reverse" size="sm">
-              <span>
-                <IoCaretBack className="back-icon" size={20} />
-              </span>
-              반납하기
-            </NewButton>
-          </div>
-          <div className="itemgrid">
-            <img src={RentalListImage} />
-            <div className="best-cotents">
-              <h3>목포 여행 레시피</h3>
-              <p>양다솔</p>
-            </div>
-            <NewButton type="reverse" size="sm">
-              <span>
-                <IoCaretBack className="back-icon" size={20} />
-              </span>
-              반납하기
-            </NewButton>
-          </div>
-          <div className="itemgrid">
-            <img src={RentalListImage2} />
-            <div className="best-cotents">
-              <h3>목포 여행 레시피</h3>
-              <p>양다솔</p>
-            </div>
-            <NewButton type="reverse" size="sm">
-              <span>
-                <IoCaretBack className="back-icon" size={20} />
-              </span>
-              반납하기
-            </NewButton>
-          </div>
-          <div className="itemgrid">
-            <img src={RentalListImage} />
-            <div className="best-cotents">
-              <h3>목포 여행 레시피</h3>
-              <p>양다솔</p>
-            </div>
-            <NewButton type="reverse" size="sm">
-              <span>
-                <IoCaretBack className="back-icon" size={20} />
-              </span>
-              반납하기
-            </NewButton>
-          </div>
-          <div className="itemgrid">
-            <img src={RentalListImage2} />
-            <div className="best-cotents">
-              <h3>목포 여행 레시피</h3>
-              <p>양다솔</p>
-            </div>
-            <NewButton type="reverse" size="sm">
-              <span>
-                <IoCaretBack className="back-icon" size={20} />
-              </span>
-              반납하기
-            </NewButton>
-          </div>
+          {rental &&
+            rental.map((el, index) => (
+              <div className="itemgrid" key={index}>
+                <img src={RentalListImage} alt="책이미지" />
+                <div className="best-cotents">
+                  <h3>{el.ebk_nm}</h3>
+                  <p>{el.aut_nm}</p>
+                </div>
+                <button
+                  onClick={() => {
+                    index && dispatch(rentalActios.removeRental(index));
+                  }}
+                >
+                  <span>
+                    <IoCaretBack className="back-icon" size={20} />
+                  </span>
+                  반납하기
+                </button>
+              </div>
+            ))}
         </BookList>
       </BookRentalList>
     </>
@@ -163,6 +83,7 @@ const BookList = styled.div`
     .best-cotents {
       text-align: center;
       padding: 20px 0;
+      height: 130px;
       h3 {
         font-weight: bold;
         font-size: ${({ theme }) => theme.fontSizes.lg};

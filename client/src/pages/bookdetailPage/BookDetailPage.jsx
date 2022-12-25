@@ -1,13 +1,19 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
-import Image from "../../assets/images/대여목록 책.png";
+
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import Image from "../../assets/images/대여목록 책.png";
 import NewButton from "../../components/common/NewButton";
+
+import { useDispatch, useSelector } from "react-redux";
+import { rentalActios } from "../../utils/rentalSlice";
 
 const BookDetailPage = ({ itemData }) => {
   const { id } = useParams();
-
+  const rental = useSelector((state) => state.rental.rentalValue);
+  const dispatch = useDispatch();
+  console.log(rental);
   return (
     <>
       <DetailContainer>
@@ -61,11 +67,18 @@ const BookDetailPage = ({ itemData }) => {
                 대여하기
               </NewButton>
             ) : (
-              <NewButton color="Orange_040" size="xl" onClick={() => {}}>
+              <button
+                onClick={() => {
+                  dispatch(
+                    rentalActios.setRental([...rental, itemData.items[id]])
+                  );
+                }}
+              >
                 대여하기
-              </NewButton>
+              </button>
             )}
           </div>
+          {/* <NewButton size="xl">대여하기</NewButton> */}
         </DetaileContents>
       </DetailContainer>
     </>

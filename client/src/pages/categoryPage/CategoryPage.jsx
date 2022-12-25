@@ -36,8 +36,8 @@ const CategoryPage = ({ itemData }) => {
             ? itemData.items &&
               itemData.items.map((el) => {
                 return (
-                  <div className="itemgrid">
-                    <CategoryItem data={el} key={el.no} />
+                  <div className="itemgrid" key={el.no}>
+                    <CategoryItem data={el} />
                   </div>
                 );
               })
@@ -46,8 +46,8 @@ const CategoryPage = ({ itemData }) => {
                 .filter((el) => el.gnr === gnr1)
                 .map((el) => {
                   return (
-                    <div className="itemgrid">
-                      <CategoryItem data={el} key={el.no} />
+                    <div className="itemgrid" key={el.no}>
+                      <CategoryItem data={el} />
                     </div>
                   );
                 })}
