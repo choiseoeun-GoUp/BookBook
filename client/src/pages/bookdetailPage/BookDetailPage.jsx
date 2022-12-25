@@ -32,6 +32,13 @@ const BookDetailPage = () => {
   const rental = useSelector((state) => state.rental.rentalValue);
   const dispatch = useDispatch();
 
+  const rentalRemove = (el, value) => {
+    return el.filter((ele) => {
+      return ele.no != value;
+    });
+  };
+  console.log(rental.filter((el) => Number(id) === el.no).length === 1);
+  console.log(rental);
   return (
     <>
       <DetailContainer>
@@ -92,6 +99,16 @@ const BookDetailPage = () => {
               <NewButton disabled size="xl">
                 대여하기
               </NewButton>
+            ) : rental.filter((el) => Number(id) === el.no).length === 1 ? (
+              <button
+                onClick={() => {
+                  dispatch(
+                    rentalActios.setRental(rentalRemove(rental, itemData[0].no))
+                  );
+                }}
+              >
+                반납하기
+              </button>
             ) : (
               <button
                 onClick={() => {

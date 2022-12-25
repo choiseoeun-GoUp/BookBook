@@ -16,7 +16,6 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         setitemData(data);
-        // console.log(data.items);
       })
       .catch((e) => {
         console.log(`에러 캐치! ${e}`);
