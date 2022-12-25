@@ -12,6 +12,11 @@ const BookRentalPage = () => {
   const notify = () => toast("💁🏻 반납하는 중 입니다. ");
   const dispatch = useDispatch();
   const rental = useSelector((state) => state.rental.rentalValue);
+  const rentalRemove = (el, value) => {
+    return el.filter((ele) => {
+      return ele.no != value;
+    });
+  };
   return (
     <>
       <BookRentalList>
@@ -19,26 +24,25 @@ const BookRentalPage = () => {
           나의 <span>대여</span> 목록
         </h2>
         <BookList>
-          {rental &&
-            rental.map((el, index) => (
-              <div className="itemgrid" key={index}>
-                <img src={RentalListImage} alt="책이미지" />
-                <div className="best-cotents">
-                  <h3>{el.ebk_nm}</h3>
-                  <p>{el.aut_nm}</p>
-                </div>
-                <button
-                  onClick={() => {
-                    index && dispatch(rentalActios.removeRental(index));
-                  }}
-                >
-                  <span>
-                    <IoCaretBack className="back-icon" size={20} />
-                  </span>
-                  반납하기
-                </button>
+          {rental.map((el, index) => (
+            <div className="itemgrid" key={index}>
+              <img src={RentalListImage} alt="책이미지" />
+              <div className="best-cotents">
+                <h3>{el.ebk_nm}</h3>
+                <p>{el.aut_nm}</p>
               </div>
-            ))}
+              <button
+                onClick={() => {
+                  dispatch(rentalActios.setRental(rentalRemove(rental, el.no)));
+                }}
+              >
+                <span>
+                  <IoCaretBack className="back-icon" size={20} />
+                </span>
+                반납하기
+              </button>
+            </div>
+          ))}
         </BookList>
       </BookRentalList>
     </>

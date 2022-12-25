@@ -26,7 +26,7 @@ const rentalSlice = createSlice({
       state.rentalValue = value;
     },
     removeRental: (state, action) => {
-      state.rental.splice(action.payload, 1);
+      [...state.rental].splice(action.payload, 1);
     },
   },
 });
