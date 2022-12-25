@@ -35,10 +35,7 @@ function App() {
           path="/category"
           element={<CategoryPage itemData={itemData} />}
         ></Route>
-        <Route
-          path="/category/:id"
-          element={<BookDetailPage itemData={itemData} />}
-        ></Route>
+        <Route path="/category/:id" element={<BookDetailPage />}></Route>
         <Route path="/wishlist" element={<WishListPage />}></Route>
         <Route path="/bookrental" element={<BookRentalPage />}></Route>
         <Route path="*" element={<div>NotFound</div>} />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useParams } from "react-router-dom";
 
@@ -9,11 +9,29 @@ import NewButton from "../../components/common/NewButton";
 import { useDispatch, useSelector } from "react-redux";
 import { rentalActios } from "../../utils/rentalSlice";
 
-const BookDetailPage = ({ itemData }) => {
+const BookDetailPage = () => {
   const { id } = useParams();
+  const [itemData, setitemData] = useState([]);
+  const getContents = () => {
+    fetch(
+      `http://apis.data.go.kr/4050000/libebook/getLibebook?serviceKey=ivsTBybg%2FyaUtUrc5%2F6%2BJvWhOVLbJefA9Q9YegAX0e2vDPOrpN4KzJDQ8FmDDjB5eMwzlirugCRw%2BqEOQb3SOg%3D%3D&pageNo=1&numOfRows=30`
+    )
+      .then((res) => res.json())
+      .then((data) => {
+        setitemData(data.items.filter((el) => el.no === Number(id)));
+      })
+      .catch((e) => {
+        console.log(`에러 캐치! ${e}`);
+      });
+  };
+
+  useEffect(() => {
+    getContents();
+  }, []);
+
   const rental = useSelector((state) => state.rental.rentalValue);
   const dispatch = useDispatch();
-  console.log(rental);
+
   return (
     <>
       <DetailContainer>
@@ -24,20 +42,20 @@ const BookDetailPage = ({ itemData }) => {
         <DetaileContents>
           <p className="category-btn">
             카테고리 <span>〉</span>
-            <span> {itemData.items[id].gnr}</span>
+            <span> {itemData[0] && itemData[0].gnr}</span>
           </p>
           <div className="title-box">
             <div className="title">
-              <h2>{itemData.items[id].ebk_nm}</h2>
+              <h2>{itemData[0] && itemData[0].ebk_nm}</h2>
               {/* <p>{itemData.items[id].pblsh_ymd}</p> */}
             </div>
             <div className="title-sub">
               <div className="author-info">
                 <p>
-                  저자명 : <span>{itemData.items[id].aut_nm}</span>
+                  저자명 : <span>{itemData[0] && itemData[0].aut_nm}</span>
                 </p>
                 <p>
-                  출판사 : <span>{itemData.items[id].pblshr}</span>
+                  출판사 : <span>{itemData[0] && itemData[0].pblshr}</span>
                 </p>
               </div>
               <div className="add-wishlist">
@@ -50,9 +68,11 @@ const BookDetailPage = ({ itemData }) => {
           </div>
           <div className="contents-box">
             <h2>Description</h2>
-            <div className="book-info-box">{itemData.items[id].cn_intro}</div>
+            <div className="book-info-box">
+              {itemData[0] && itemData[0].cn_intro}
+            </div>
           </div>
-          {itemData.items[id].rsvt_noppl > 11 ? (
+          {itemData[0] && itemData[0].rsvt_noppl > 11 ? (
             <p className="rsvt-alert">10명 이상 대여 불가능</p>
           ) : (
             ""
@@ -61,21 +81,21 @@ const BookDetailPage = ({ itemData }) => {
           <div className="button-box">
             <div color="Gray_030" size="md" className="button-rsvt">
               현재 대여 인원 :{" "}
-              {itemData.items[id].rsvt_noppl +
-                rental.filter((el) => Number(id) === el.no).length}
+              {itemData[0] &&
+                itemData[0].rsvt_noppl +
+                  rental.filter((el) => Number(id) === el.no).length}
             </div>
-            {itemData.items[id].rsvt_noppl +
+            {itemData[0] &&
+            itemData[0].rsvt_noppl +
               rental.filter((el) => Number(id) === el.no).length >
-            9 ? (
+              9 ? (
               <NewButton disabled size="xl">
                 대여하기
               </NewButton>
             ) : (
               <button
                 onClick={() => {
-                  dispatch(
-                    rentalActios.setRental([...rental, itemData.items[id]])
-                  );
+                  dispatch(rentalActios.setRental([...rental, itemData[0]]));
                 }}
               >
                 대여하기
