@@ -15,7 +15,7 @@ const SIZES = {
     --button-padding: 8px 140px;
   `,
 };
-const TYPE = {
+const VERSION = {
   reverse: css`
     --button-font-color: ${({ theme }) => theme.colors.Orange_040};
     --button-bg-color: #ffffff;
@@ -24,14 +24,14 @@ const TYPE = {
   `,
 };
 
-const NewButton = ({ disabled, size, type, children }) => {
+const NewButton = ({ disabled, size, version, children }) => {
   const sizeStyle = SIZES[size];
-  const typeStyle = TYPE[type];
+  const versionStyle = VERSION[version];
   return (
     <StyledButton
       disabled={disabled}
       sizeStyle={sizeStyle}
-      typeStyle={typeStyle}
+      versionStyle={versionStyle}
     >
       {children}
     </StyledButton>
@@ -40,7 +40,7 @@ const NewButton = ({ disabled, size, type, children }) => {
 
 const StyledButton = styled.button`
   ${(p) => p.sizeStyle}
-  ${(p) => p.typeStyle}
+  ${(p) => p.versionStyle}
 
   margin: 0;
   border: 2px solid ${({ theme }) => theme.colors.Orange_040};
@@ -50,12 +50,12 @@ const StyledButton = styled.button`
   padding: var(--button-padding, 12px 16px);
   color: var(--button-font-color, #ffffff);
   background: var(--button-bg-color, #ff6737);
-  &:active,
+  /* &:active,
   &:hover,
   &:focus {
     color: var(--button-hover-font-color, #ff6737);
     background: var(--button-hover-bg-color, #fff);
-  }
+  } */
 
   &:disabled {
     cursor: default;

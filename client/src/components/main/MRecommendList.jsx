@@ -50,7 +50,7 @@ const MRecommendList = () => {
                 작가의 희비극을 담은 첫 에세이다. 독립출판물을 전시하고 판매하
               </div>
               <div className="button-box">
-                <NewButton type="reverse" size="md">
+                <NewButton version="reverse" size="md">
                   <span>
                     <FaHeart size={14} />
                   </span>
