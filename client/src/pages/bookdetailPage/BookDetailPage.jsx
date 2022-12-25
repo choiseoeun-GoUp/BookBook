@@ -60,9 +60,13 @@ const BookDetailPage = ({ itemData }) => {
 
           <div className="button-box">
             <div color="Gray_030" size="md" className="button-rsvt">
-              현재 대여 인원 : {itemData.items[id].rsvt_noppl}
+              현재 대여 인원 :{" "}
+              {itemData.items[id].rsvt_noppl +
+                rental.filter((el) => Number(id) === el.no).length}
             </div>
-            {itemData.items[id].rsvt_noppl > 11 ? (
+            {itemData.items[id].rsvt_noppl +
+              rental.filter((el) => Number(id) === el.no).length >
+            9 ? (
               <NewButton disabled size="xl">
                 대여하기
               </NewButton>
