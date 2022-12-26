@@ -32,7 +32,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              to="/wishlist"
+              to="/"
               className={({ isActive }) => (isActive ? "selected" : "not")}
             >
               WishList

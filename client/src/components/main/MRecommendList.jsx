@@ -4,17 +4,26 @@ import RImage from "../../assets/images/편집자 추천 책.png";
 import NewButton from "../common/NewButton";
 import { FaHeart } from "react-icons/fa";
 
-const MRecommendList = () => {
+const MRecommendList = ({ position }) => {
   return (
     <>
       <MThirdContainer>
-        <div className="Recommend-title">
+        <div
+          className="Recommend-title"
+          style={{
+            opacity: (position - 1200) / 50,
+          }}
+        >
           <h2>편집자 추천 Book</h2>
           <p>편집자가 추천하는 책을 살펴보세요</p>
         </div>
-        <RcommendContents>
+        <RcommendContents
+          style={{
+            opacity: (position - 1600) / 50,
+          }}
+        >
           <div className="recommend-image">
-            <img src={RImage} />
+            <img src={RImage} alt="책 표지" />
           </div>
           <RInfoContainer>
             <div className="recommend-inner">
@@ -78,7 +87,7 @@ const MThirdContainer = styled.section`
   .Recommend-title {
     margin-bottom: 50px;
     text-align: center;
-    margin-top: 100px;
+    margin-top: 200px;
     h2 {
       font-size: ${({ theme }) => theme.fontSizes.titleS};
       font-family: "GodoM", "Arial", sans-serif;

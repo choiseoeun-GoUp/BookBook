@@ -9,11 +9,16 @@ import "swiper/css/autoplay";
 import "./Recommend.css";
 import BestImage from "../../assets/images/베스트셀러 책.png";
 
-const MBestSeller = () => {
+const MBestSeller = ({ position }) => {
   return (
     <>
       <MSecondContainer>
-        <div className="best-title">
+        <div
+          className="best-title"
+          style={{
+            opacity: (position - 600) / 50,
+          }}
+        >
           <h2>Best Seller</h2>
           <p>BOOKBOOK의 베스트셀러 상품을 살펴보세요</p>
         </div>
@@ -40,6 +45,9 @@ const MBestSeller = () => {
               slidesPerView: 3,
               spaceBetween: 30,
             },
+          }}
+          style={{
+            opacity: (position - 850) / 100,
           }}
         >
           <StyleSwipper>

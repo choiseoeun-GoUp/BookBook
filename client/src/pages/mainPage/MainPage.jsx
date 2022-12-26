@@ -5,10 +5,21 @@ import MainImageBook from "../../assets/images/메인 이미지.png";
 import MBestSeller from "../../components/main/MBestSeller";
 import MRecommendList from "../../components/main/MRecommendList";
 import { MdOutlineMenuBook } from "react-icons/md";
+import ReactCurvedText from "react-curved-text";
 
 const MainPage = () => {
   const slides = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
-  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const [position, setPosition] = useState(0);
+  function onScroll() {
+    setPosition(window.scrollY);
+  }
+  useEffect(() => {
+    window.addEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
+  }, []);
   return (
     <>
       <MainContainer>
@@ -28,17 +39,33 @@ const MainPage = () => {
               </div>
             </MainText>
             <MainImage>
-              <img src={MainImageBook} alt="이미지" />
+              <img
+                src={MainImageBook}
+                alt="이미지"
+                style={{
+                  transform: `translateX(${position / 10}px)`,
+                }}
+              />
             </MainImage>
+            <SpinningText>
+              <ReactCurvedText
+                width={370}
+                height={310}
+                cx="130"
+                cy="130"
+                rx={98}
+                ry={98}
+                startOffset={20}
+                reversed={true}
+                text="BookBook에서 책을 대여 해보세요  BookBook에서 책을 대여 해보세요  "
+                textProps={{ style: { fontSize: "20" } }}
+                tspanProps={{ dy: "-16" }}
+              />
+            </SpinningText>
           </MFirstContainer>
-          <MBestSeller />
-          <MRecommendList />
+          <MBestSeller position={position} />
+          <MRecommendList position={position} />
         </section>
-        <TextInteraction>
-          <p className="second-parallel">
-            BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
-          </p>
-        </TextInteraction>
         <TextInteraction2>
           {slides.map((color, index) => (
             <p className="parallel" key={index}>
@@ -55,33 +82,18 @@ export default MainPage;
 
 const MainContainer = styled.main`
   section {
-    /* padding: 0 30px; */
     margin: 0 auto;
   }
 `;
 
 // 첫번째 컨테이너
 
-const FadeIn = keyframes` /* 원본용 */
-    0% {
-        transform: translateX(0);
-    }
-    50% {
-        transform: translateX(-100vw);
-    }
-    50.01%{
-        transform: translateX(100vw);
-    }
-    100%{
-        transform: translateX(0);
-    }
-`;
-
 const MFirstContainer = styled.section`
   max-width: 1280px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 `;
 const MainText = styled.div`
   width: 60%;
@@ -100,25 +112,27 @@ const MainText = styled.div`
 
 const MainImage = styled.div``;
 
-const TextInteraction = styled.div`
-  width: 100vw;
-  height: 50px;
-  margin: 100px 0 160px 0;
-  background-color: ${({ theme }) => theme.colors.Orange_040};
-  line-height: 50px;
-  padding: 0 20px;
-  p {
-    font-size: ${({ theme }) => theme.fontSizes.xl};
-    width: 100%;
-    white-space: nowrap;
-    display: flex;
-    align-items: center;
-    span {
-      margin: 0 30px;
-    }
+const spin = keyframes`
+    0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+`;
+const SpinningText = styled.div`
+  position: absolute;
+  bottom: -10%;
+  left: 10%;
+  margin: 0 auto;
+  width: 290px;
+  height: 290px;
+  border: 15px solid transparent;
+  border-radius: 50%;
+  animation: ${spin} 8s linear infinite;
+
+  text {
+    fill: ${({ theme }) => theme.colors.Gray_040};
   }
 `;
-const rollingleft1 = keyframes` /* 원본용 */
+
+const rollingleft1 = keyframes`
     0% {
         transform: translateX(0);
     }
@@ -135,7 +149,7 @@ const rollingleft1 = keyframes` /* 원본용 */
 
 const TextInteraction2 = styled.div`
   width: 100vw;
-  margin-bottom: 12vw;
+  margin: 12vw 0;
   display: flex;
   /* transform: rotate(2deg); */
   background-color: ${({ theme }) => theme.colors.Orange_040};
