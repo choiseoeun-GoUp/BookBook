@@ -9,6 +9,7 @@ import theme from "./assets/styles/theme";
 import { Provider } from "react-redux";
 import { PersistGate } from "redux-persist/integration/react";
 import { persistStore } from "redux-persist";
+import RouterTop from "./components/common/RouterTop";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 
@@ -19,6 +20,7 @@ root.render(
     <Provider store={store}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
+          <RouterTop />
           <GlobalStyle />
           <ThemeProvider theme={theme}>
             <App />
