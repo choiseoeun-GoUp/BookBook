@@ -30,6 +30,8 @@ const BookDetailPage = () => {
 
   useEffect(() => {
     getContents();
+    let vh = document.body.offsetHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
   }, []);
 
   const rental = useSelector((state) => state.rental.rentalValue);
@@ -142,6 +144,13 @@ const BookDetailPage = () => {
           />
         </AlertBox>
       </DetailContainer>
+      <OutLine>
+        <p className="bg-line-1"></p>
+        <p className="bg-line-2"></p>
+        <p className="bg-line-3"></p>
+        <p className="bg-line-4"></p>
+        <p className="bg-circle"></p>
+      </OutLine>
     </>
   );
 };
@@ -153,6 +162,8 @@ const DetailContainer = styled.section`
   max-width: 1280px;
   padding: 50px 0 150px 0;
   display: flex;
+  position: relative;
+  z-index: 1;
 `;
 
 const DetailImage = styled.div`
@@ -262,4 +273,48 @@ const AlertBox = styled.div`
     #ffe053,
     #ff6737
   );
+`;
+const OutLine = styled.div`
+  z-index: -1;
+  .bg-line-1 {
+    width: 0.5px;
+    min-height: calc(var(--vh, 1vh) * 100);
+    background-color: #eeeeee;
+    position: absolute;
+    top: -100px;
+    left: 45px;
+  }
+  .bg-line-2 {
+    width: 0.5px;
+    height: calc(var(--vh, 1vh) * 100);
+    background-color: #eeeeee;
+    position: absolute;
+    top: -100px;
+    left: 196px;
+  }
+  .bg-line-3 {
+    width: 0.5px;
+    height: calc(var(--vh, 1vh) * 100);
+    background-color: #eeeeee;
+    position: absolute;
+    top: -100px;
+    right: 150px;
+  }
+  .bg-line-4 {
+    width: 0.5px;
+    height: calc(var(--vh, 1vh) * 100);
+    background-color: #eeeeee;
+    position: absolute;
+    top: -100px;
+    right: 310px;
+  }
+  .bg-circle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 0.5px solid #eeeeee;
+    position: absolute;
+    top: 80px;
+    right: 400px;
+  }
 `;

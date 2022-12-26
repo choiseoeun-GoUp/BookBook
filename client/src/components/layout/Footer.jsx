@@ -46,6 +46,7 @@ const FooterContainer = styled.footer`
   justify-content: center;
   align-items: center;
   padding: 80px 0;
+  z-index: 1;
 `;
 
 const FMain = styled.section`

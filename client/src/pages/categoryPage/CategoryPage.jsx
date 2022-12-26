@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import CategoryItem from "../../components/category/CategoryItem";
 import Pagination from "react-js-pagination";
@@ -14,77 +14,92 @@ const CategoryPage = ({ itemData }) => {
   const handlePageChange = (e) => {
     dispatch(pageActios.setPaging(e));
   };
+  useEffect(() => {
+    let vh = document.body.offsetHeight * 0.01;
+    document.documentElement.style.setProperty("--vh", `${vh}px`);
+  }, []);
   return (
-    <CategoryContainer>
-      <section className="category-content-box">
-        <CategoryTabList>
-          <h2>Category</h2>
-          <ul>
-            <li onClick={() => setViewAll(true)}>All</li>
-            {itemData.items &&
-              itemData.items
-                .filter(
-                  (arr, index, callback) =>
-                    index === callback.findIndex((t) => t.gnr === arr.gnr)
-                )
-                .sort((a, b) => {
-                  return a.gnr > b.gnr ? 1 : -1;
-                })
-                .map((el, index) => (
-                  <li
-                    key={index}
-                    onClick={() => {
-                      setGnr(el.gnr);
-                      setViewAll(false);
-                    }}
-                  >
-                    {el.gnr}
-                  </li>
-                ))}
-          </ul>
-        </CategoryTabList>
-        <CategoryContents>
-          {viewAll
-            ? itemData.items &&
-              itemData.items.map((el) => {
-                return (
-                  <div className="itemgrid" key={el.no}>
-                    <CategoryItem data={el} />
-                  </div>
-                );
-              })
-            : itemData.items &&
-              itemData.items
-                .filter((el) => el.gnr === gnr)
-                .map((el) => {
+    <>
+      <CategoryContainer>
+        <section className="category-content-box">
+          <CategoryTabList>
+            <h2>Category</h2>
+            <ul>
+              <li onClick={() => setViewAll(true)}>All</li>
+              {itemData.items &&
+                itemData.items
+                  .filter(
+                    (arr, index, callback) =>
+                      index === callback.findIndex((t) => t.gnr === arr.gnr)
+                  )
+                  .sort((a, b) => {
+                    return a.gnr > b.gnr ? 1 : -1;
+                  })
+                  .map((el, index) => (
+                    <li
+                      key={index}
+                      onClick={() => {
+                        setGnr(el.gnr);
+                        setViewAll(false);
+                      }}
+                    >
+                      {el.gnr}
+                    </li>
+                  ))}
+            </ul>
+          </CategoryTabList>
+          <CategoryContents>
+            {viewAll
+              ? itemData.items &&
+                itemData.items.map((el) => {
                   return (
                     <div className="itemgrid" key={el.no}>
                       <CategoryItem data={el} />
                     </div>
                   );
-                })}
-        </CategoryContents>
-      </section>
-      <CategoryPaging>
-        {viewAll ? (
-          <Pagination
-            activePage={page && page}
-            itemsCountPerPage="9"
-            totalItemsCount={itemData.totalCount}
-            pageRangeDisplayed={5}
-            prevPageText={"‹"}
-            nextPageText={"›"}
-            onChange={handlePageChange}
-          />
-        ) : null}
-      </CategoryPaging>
-    </CategoryContainer>
+                })
+              : itemData.items &&
+                itemData.items
+                  .filter((el) => el.gnr === gnr)
+                  .map((el) => {
+                    return (
+                      <div className="itemgrid" key={el.no}>
+                        <CategoryItem data={el} />
+                      </div>
+                    );
+                  })}
+          </CategoryContents>
+        </section>
+        <CategoryPaging>
+          {viewAll ? (
+            <Pagination
+              activePage={page && page}
+              itemsCountPerPage="9"
+              totalItemsCount={itemData.totalCount}
+              pageRangeDisplayed={5}
+              prevPageText={"‹"}
+              nextPageText={"›"}
+              onChange={handlePageChange}
+            />
+          ) : null}
+        </CategoryPaging>
+      </CategoryContainer>
+      <OutLine>
+        <p className="bg-line-1"></p>
+        <p className="bg-line-2"></p>
+        <p className="bg-line-3"></p>
+        <p className="bg-line-4"></p>
+        <p className="bg-circle"></p>
+      </OutLine>
+    </>
   );
 };
 
 export default CategoryPage;
 
 const CategoryContainer = styled.section`
+  position: relative;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -192,5 +207,49 @@ const CategoryPaging = styled.div`
     width: 48px;
     height: 30px;
     color: #437bec;
+  }
+`;
+const OutLine = styled.div`
+  z-index: -1;
+  .bg-line-1 {
+    width: 0.5px;
+    min-height: calc(var(--vh, 1vh) * 100);
+    background-color: #eeeeee;
+    position: absolute;
+    top: -100px;
+    left: 45px;
+  }
+  .bg-line-2 {
+    width: 0.5px;
+    height: calc(var(--vh, 1vh) * 100);
+    background-color: #eeeeee;
+    position: absolute;
+    top: -100px;
+    left: 196px;
+  }
+  .bg-line-3 {
+    width: 0.5px;
+    height: calc(var(--vh, 1vh) * 100);
+    background-color: #eeeeee;
+    position: absolute;
+    top: -100px;
+    right: 150px;
+  }
+  .bg-line-4 {
+    width: 0.5px;
+    height: calc(var(--vh, 1vh) * 100);
+    background-color: #eeeeee;
+    position: absolute;
+    top: -100px;
+    right: 310px;
+  }
+  .bg-circle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 0.5px solid #eeeeee;
+    position: absolute;
+    top: 80px;
+    right: 400px;
   }
 `;

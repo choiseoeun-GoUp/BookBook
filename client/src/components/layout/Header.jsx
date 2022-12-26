@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
 const Header = () => {
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const updateScroll = () => {
+    setScrollPosition(window.scrollY || document.documentElement.scrollTop);
+  };
+  useEffect(() => {
+    window.addEventListener("scroll", updateScroll);
+  });
   return (
     <HeaderContainer>
-      <HLaptop>
+      <HLaptop className={scrollPosition < 100 ? "" : "scroll-change"}>
         <NavLink to="/">
           <HLogo>
             Book<span className="first-color">B</span>
@@ -32,7 +39,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              to="/"
+              to="/wishlist"
               className={({ isActive }) => (isActive ? "selected" : "not")}
             >
               WishList
@@ -47,18 +54,23 @@ const Header = () => {
 export default Header;
 const HeaderContainer = styled.nav`
   width: 100%;
-  position: fixed;
-  top: 0;
+  height: 100px;
   z-index: 100;
+  .scroll-change {
+    position: fixed;
+    top: -100px;
+  }
+  line-height: 100px;
 `;
 const HLaptop = styled.main`
-  max-width: 100%;
-  height: 100px;
-  margin: 0 auto;
-  padding: 0 30px;
+  position: fixed;
+  top: 0px;
+  width: 100%;
+  padding: 0 50px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  transition: 1s;
 `;
 const HLogo = styled.div`
   font-size: ${({ theme }) => theme.fontSizes.LogoSize};

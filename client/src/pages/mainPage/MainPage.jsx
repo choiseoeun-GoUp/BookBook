@@ -14,12 +14,14 @@ const MainPage = () => {
   function onScroll() {
     setPosition(window.scrollY);
   }
+
   useEffect(() => {
     window.addEventListener("scroll", onScroll);
     return () => {
       window.removeEventListener("scroll", onScroll);
     };
   }, []);
+
   return (
     <>
       <MainContainer>
@@ -65,15 +67,22 @@ const MainPage = () => {
           </MFirstContainer>
           <MBestSeller position={position} />
           <MRecommendList position={position} />
+          <TextInteraction2>
+            {slides.map((color, index) => (
+              <p className="parallel" key={index}>
+                BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
+              </p>
+            ))}
+          </TextInteraction2>
         </section>
-        <TextInteraction2>
-          {slides.map((color, index) => (
-            <p className="parallel" key={index}>
-              BookBook<span>{<MdOutlineMenuBook size={20} />}</span>
-            </p>
-          ))}
-        </TextInteraction2>
       </MainContainer>
+      <OutLine>
+        <p className="bg-line-1"></p>
+        <p className="bg-line-2"></p>
+        <p className="bg-line-3"></p>
+        <p className="bg-line-4"></p>
+        <p className="bg-circle"></p>
+      </OutLine>
     </>
   );
 };
@@ -81,8 +90,11 @@ const MainPage = () => {
 export default MainPage;
 
 const MainContainer = styled.main`
+  height: 100%;
   section {
     margin: 0 auto;
+    position: relative;
+    z-index: 1;
   }
 `;
 
@@ -93,7 +105,6 @@ const MFirstContainer = styled.section`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: relative;
 `;
 const MainText = styled.div`
   width: 60%;
@@ -165,7 +176,52 @@ const TextInteraction2 = styled.div`
     }
   }
   .parallel {
-    background-color: red;
+    /* background-color: red; */
     animation: 10s linear 0s infinite normal forwards running ${rollingleft1};
+  }
+`;
+
+const OutLine = styled.div`
+  z-index: -1;
+  .bg-line-1 {
+    width: 0.5px;
+    min-height: 270%;
+    background-color: #eeeeee;
+    position: absolute;
+    top: -100px;
+    left: 45px;
+  }
+  .bg-line-2 {
+    width: 0.5px;
+    height: 270%;
+    background-color: #eeeeee;
+    position: absolute;
+    top: -100px;
+    left: 196px;
+  }
+  .bg-line-3 {
+    width: 0.5px;
+    height: 270%;
+    background-color: #eeeeee;
+    position: absolute;
+    top: -100px;
+    right: 150px;
+  }
+  .bg-line-4 {
+    width: 0.5px;
+    height: 270%;
+    background-color: #eeeeee;
+    position: absolute;
+    top: -100px;
+    right: 310px;
+  }
+  .bg-circle {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    border: 0.5px solid #eeeeee;
+    position: absolute;
+    top: 80px;
+    right: 400px;
   }
 `;
