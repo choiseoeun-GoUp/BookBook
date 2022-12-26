@@ -1,13 +1,35 @@
 import React from "react";
 import styled from "styled-components";
+import { NavLink } from "react-router-dom";
+import { MdOutlineMenuBook } from "react-icons/md";
 
 const Footer = () => {
   return (
     <FooterContainer>
       <FMain>
-        <h3>로고</h3>
+        <h3>
+          <span>{<MdOutlineMenuBook size={30} />}</span>
+          BookBook
+        </h3>
+        <ul>
+          <li>
+            <NavLink to="/category" className="base">
+              Category
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/bookrental" className="base">
+              Book Rental
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/wishlist" className="base">
+              WishList
+            </NavLink>
+          </li>
+        </ul>
         <p className="copy">
-          Copyright © 2022 recostore.shop.,Ltd. All rights reserved.
+          Copyright © 2022 bookbook.shop.,Ltd. All rights reserved.
         </p>
       </FMain>
     </FooterContainer>
@@ -23,40 +45,48 @@ const FooterContainer = styled.footer`
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 80px 0;
 `;
 
 const FMain = styled.section`
   max-width: 1280px;
+  height: 100%;
   color: ${({ theme }) => theme.colors.White};
-  padding: 45px 0;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  img {
-    width: 200px;
-    cursor: pointer;
-    margin-bottom: 30px;
+  h3 {
+    font-size: ${({ theme }) => theme.fontSizes.xxxxl};
+    font-family: "GodoM", "Arial", sans-serif;
+    color: ${({ theme }) => theme.colors.Gray_060};
+    span {
+      margin-right: 10px;
+      position: relative;
+      top: 3px;
+    }
   }
   ul {
-    max-width: 470px;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-    gap: 5px;
-    margin-bottom: 50px;
+    display: flex;
+    justify-content: space-between;
+    li + li {
+      margin-left: 80px;
+    }
     li {
       font-size: ${({ theme }) => theme.fontSizes.base};
-      display: flex;
-      align-items: center;
-      p {
-        margin-right: 7px;
-        padding-top: 3px;
-        cursor: pointer;
+      cursor: pointer;
+      .base {
+        color: ${({ theme }) => theme.colors.Gray_060};
+        &:hover {
+          color: ${({ theme }) => theme.colors.Orange_040};
+        }
       }
     }
   }
   .copy {
-    color: ${({ theme }) => theme.colors.Gray_020};
+    font-size: ${({ theme }) => theme.fontSizes.xs};
+
+    color: ${({ theme }) => theme.colors.Gray_040};
     font-weight: 200;
   }
 `;
