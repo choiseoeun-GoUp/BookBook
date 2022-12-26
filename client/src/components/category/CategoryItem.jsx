@@ -5,16 +5,26 @@ import RentalListImage from "../../assets/images/대여목록 책.png";
 import RentalListImage2 from "../../assets/images/베스트셀러 책.png";
 import RentalMark from "../../assets/images/대여마크.png";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { useDispatch, useSelector } from "react-redux";
+import { rentalActios } from "../../utils/rentalSlice";
 
 const CategoryItem = ({ data }) => {
   const navigate = useNavigate();
   const goDetail = () => {
     data && navigate(`/category/${data.no}`);
   };
+  const dispatch = useDispatch();
+  const rental = useSelector((state) => state.rental.rentalValue);
+
   return (
     <>
       <ItemBox>
-        <img src={RentalMark} className="rental-mark" alt="대여 마크" />
+        {rental.filter((el) => Number(data.no) === el.no).length === 1 ? (
+          <img src={RentalMark} className="rental-mark" alt="대여 마크" />
+        ) : (
+          ""
+        )}
+
         <img
           src={RentalListImage}
           className="rental-image"

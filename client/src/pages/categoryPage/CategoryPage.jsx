@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { pageActios } from "../../utils/pageSlice";
 
 const CategoryPage = ({ itemData }) => {
-  const [gnr1, setGnr1] = useState("");
+  const [gnr, setGnr] = useState("");
   const [viewAll, setViewAll] = useState(true);
   const page = useSelector((state) => state.page.pageValue);
 
@@ -34,7 +34,7 @@ const CategoryPage = ({ itemData }) => {
                   <li
                     key={index}
                     onClick={() => {
-                      setGnr1(el.gnr);
+                      setGnr(el.gnr);
                       setViewAll(false);
                     }}
                   >
@@ -55,7 +55,7 @@ const CategoryPage = ({ itemData }) => {
               })
             : itemData.items &&
               itemData.items
-                .filter((el) => el.gnr === gnr1)
+                .filter((el) => el.gnr === gnr)
                 .map((el) => {
                   return (
                     <div className="itemgrid" key={el.no}>
