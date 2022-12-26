@@ -8,6 +8,7 @@ import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "./Recommend.css";
 import BestImage from "../../assets/images/베스트셀러 책.png";
+import FirstBook from "../../assets/images/금메달.png";
 
 const MBestSeller = ({ position }) => {
   return (
@@ -52,7 +53,7 @@ const MBestSeller = ({ position }) => {
         >
           <StyleSwipper>
             <MBestBox>
-              <img src={BestImage} />
+              <img src={BestImage} alt="베스트셀러1 이미지" />
               <div className="best-cotents">
                 <h3>목포 여행 레시피</h3>
                 <p>양다솔</p>
@@ -61,7 +62,7 @@ const MBestSeller = ({ position }) => {
           </StyleSwipper>
           <StyleSwipper>
             <MBestBox>
-              <img src={BestImage} />
+              <img src={BestImage} alt="베스트셀러2 이미지" />
               <div className="best-cotents">
                 <h3>목포 여행 레시피</h3>
                 <p>양다솔</p>
@@ -70,13 +71,14 @@ const MBestSeller = ({ position }) => {
           </StyleSwipper>
           <StyleSwipper>
             <MBestBox>
-              <img src={BestImage} />
+              <img src={BestImage} alt="베스트셀러3 이미지" />
               <div className="best-cotents">
                 <h3>목포 여행 레시피</h3>
                 <p>양다솔</p>
               </div>
             </MBestBox>
           </StyleSwipper>
+          <img src={FirstBook} alt="1등 상품 이미지" className="first-mark" />
           <PointBox></PointBox>
         </SwiperBox>
       </MSecondContainer>
@@ -106,6 +108,13 @@ const SwiperBox = styled(Swiper)`
   max-width: 1280px;
   position: relative;
   padding: 50px 0;
+  .first-mark {
+    position: absolute;
+    top: 10%;
+    left: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+  }
 `;
 const PointBox = styled.div`
   width: 360px;
@@ -130,6 +139,7 @@ const MBestBox = styled.div`
   flex-direction: column;
   img {
     overflow: hidden;
+    z-index: 1;
   }
   .best-cotents {
     text-align: center;

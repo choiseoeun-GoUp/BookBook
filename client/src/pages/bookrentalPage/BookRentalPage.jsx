@@ -14,7 +14,7 @@ const BookRentalPage = () => {
   const rental = useSelector((state) => state.rental.rentalValue);
   const rentalRemove = (el, value) => {
     return el.filter((ele) => {
-      return ele.no != value;
+      return ele.no !== value;
     });
   };
   useEffect(() => {

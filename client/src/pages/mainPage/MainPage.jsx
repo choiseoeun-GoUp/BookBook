@@ -8,7 +8,7 @@ import { MdOutlineMenuBook } from "react-icons/md";
 import ReactCurvedText from "react-curved-text";
 
 const MainPage = () => {
-  const slides = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
+  const slides = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15];
 
   const [position, setPosition] = useState(0);
   function onScroll() {
@@ -49,22 +49,29 @@ const MainPage = () => {
                 }}
               />
             </MainImage>
-            <SpinningText>
-              <ReactCurvedText
-                width={370}
-                height={310}
-                cx="130"
-                cy="130"
-                rx={98}
-                ry={98}
-                startOffset={20}
-                reversed={true}
-                text="BookBook에서 책을 대여 해보세요  BookBook에서 책을 대여 해보세요  "
-                textProps={{ style: { fontSize: "20" } }}
-                tspanProps={{ dy: "-16" }}
-              />
-            </SpinningText>
+            <p className="cir cir-1"></p>
+            <p className="cir cir-2"></p>
+            <p className="cir cir-3"></p>
+            <p className="cir cir-4"></p>
+            <p className="cir cir-5"></p>
+            <p className="cir cir-6"></p>
+            <p className="cir cir-7"></p>
           </MFirstContainer>
+          <SpinningText>
+            <ReactCurvedText
+              width={370}
+              height={310}
+              cx="130"
+              cy="130"
+              rx={98}
+              ry={98}
+              startOffset={20}
+              reversed={true}
+              text="BookBook에서 책을 대여 해보세요  BookBook에서 책을 대여 해보세요  "
+              textProps={{ style: { fontSize: "20" } }}
+              tspanProps={{ dy: "-16" }}
+            />
+          </SpinningText>
           <MBestSeller position={position} />
           <MRecommendList position={position} />
           <TextInteraction2>
@@ -77,10 +84,10 @@ const MainPage = () => {
         </section>
       </MainContainer>
       <OutLine>
-        <p className="bg-line-1"></p>
-        <p className="bg-line-2"></p>
-        <p className="bg-line-3"></p>
-        <p className="bg-line-4"></p>
+        <p className="bg-line bg-line-1"></p>
+        <p className="bg-line bg-line-2"></p>
+        <p className="bg-line bg-line-3"></p>
+        <p className="bg-line bg-line-4"></p>
         <p className="bg-circle"></p>
       </OutLine>
     </>
@@ -99,12 +106,101 @@ const MainContainer = styled.main`
 `;
 
 // 첫번째 컨테이너
-
+const moveCircle = keyframes`
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(5px, -3px);
+    }
+    50%{
+      transform: translate(8px, 0px);
+    }
+    75%{
+      transform: translate(2px, 7px);
+    }
+    100%{
+      transform: translate(0, 0);
+    }
+`;
+const moveCircle2 = keyframes`
+    0% {
+      transform: translate(0, 0);
+    }
+    25% {
+      transform: translate(2px, 7px);
+    }
+    50%{
+      transform: translate(8px, 0px);
+    }
+    75%{
+      transform: translate(5px, -3px);
+    }
+    100%{
+      transform: translate(0, 0);
+    }
+`;
 const MFirstContainer = styled.section`
   max-width: 1280px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  .cir {
+    width: 30px;
+    height: 30px;
+    border-radius: 50px;
+    position: absolute;
+  }
+  .cir-1 {
+    left: -30px;
+    top: 100px;
+    border: 1px solid ${({ theme }) => theme.colors.Orange_040};
+    animation: 3s linear 0s infinite normal forwards running ${moveCircle};
+  }
+  .cir-2 {
+    left: 670px;
+    top: 650px;
+    border: 1px solid ${({ theme }) => theme.colors.Yellow_040};
+    background-color: ${({ theme }) => theme.colors.Yellow_040};
+    animation: 3s linear 0s infinite normal forwards running ${moveCircle2};
+  }
+  .cir-3 {
+    width: 35px;
+    height: 35px;
+    left: 50px;
+    bottom: 220px;
+    border: 1px solid ${({ theme }) => theme.colors.Green_040};
+    animation: 3s linear 0s infinite normal forwards running ${moveCircle};
+  }
+  .cir-4 {
+    left: 950px;
+    top: 10px;
+    border: 1px solid ${({ theme }) => theme.colors.Orange_040};
+    background-color: ${({ theme }) => theme.colors.Orange_040};
+    animation: 3s linear 0s infinite normal forwards running ${moveCircle2};
+  }
+  .cir-5 {
+    width: 20px;
+    height: 20px;
+    right: 270px;
+    bottom: 170px;
+    border: 1px solid ${({ theme }) => theme.colors.Orange_040};
+    animation: 3s linear 0s infinite normal forwards running ${moveCircle};
+  }
+  .cir-6 {
+    left: 500px;
+    top: 200px;
+    border: 1px solid ${({ theme }) => theme.colors.Green_040};
+    background-color: ${({ theme }) => theme.colors.Green_040};
+    animation: 3s linear 0s infinite normal forwards running ${moveCircle};
+  }
+  .cir-7 {
+    left: 500px;
+    bottom: 10px;
+    border: 1px solid ${({ theme }) => theme.colors.Orange_040};
+    background-color: ${({ theme }) => theme.colors.Orange_040};
+    animation: 3s linear 0s infinite normal forwards running ${moveCircle2};
+  }
 `;
 const MainText = styled.div`
   width: 60%;
@@ -129,15 +225,15 @@ const spin = keyframes`
 `;
 const SpinningText = styled.div`
   position: absolute;
-  bottom: -10%;
-  left: 10%;
+  bottom: 29%;
+  left: 15%;
+  transform: translate(-50%, -50%);
   margin: 0 auto;
   width: 290px;
   height: 290px;
   border: 15px solid transparent;
   border-radius: 50%;
   animation: ${spin} 8s linear infinite;
-
   text {
     fill: ${({ theme }) => theme.colors.Gray_040};
   }
@@ -183,36 +279,23 @@ const TextInteraction2 = styled.div`
 
 const OutLine = styled.div`
   z-index: -1;
-  .bg-line-1 {
+  .bg-line {
     width: 0.5px;
-    min-height: 270%;
+    min-height: 300%;
     background-color: #eeeeee;
     position: absolute;
     top: -100px;
+  }
+  .bg-line-1 {
     left: 45px;
   }
   .bg-line-2 {
-    width: 0.5px;
-    height: 270%;
-    background-color: #eeeeee;
-    position: absolute;
-    top: -100px;
     left: 196px;
   }
   .bg-line-3 {
-    width: 0.5px;
-    height: 270%;
-    background-color: #eeeeee;
-    position: absolute;
-    top: -100px;
     right: 150px;
   }
   .bg-line-4 {
-    width: 0.5px;
-    height: 270%;
-    background-color: #eeeeee;
-    position: absolute;
-    top: -100px;
     right: 310px;
   }
   .bg-circle {

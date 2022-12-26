@@ -39,7 +39,7 @@ const BookDetailPage = () => {
 
   const rentalRemove = (el, value) => {
     return el.filter((ele) => {
-      return ele.no != value;
+      return ele.no !== value;
     });
   };
   const notifyReturn = () => toast("반납하는 중 입니다 🤔");
