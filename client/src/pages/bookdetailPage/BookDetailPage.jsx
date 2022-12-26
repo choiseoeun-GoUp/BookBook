@@ -9,6 +9,9 @@ import NewButton from "../../components/common/NewButton";
 import { useDispatch, useSelector } from "react-redux";
 import { rentalActios } from "../../utils/rentalSlice";
 
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const BookDetailPage = () => {
   const { id } = useParams();
   const [itemData, setitemData] = useState([]);
@@ -37,8 +40,9 @@ const BookDetailPage = () => {
       return ele.no != value;
     });
   };
-  console.log(rental.filter((el) => Number(id) === el.no).length === 1);
-  console.log(rental);
+  const notifyReturn = () => toast("반납하는 중 입니다 🤔");
+  const notifyRental = () => toast("대여하는 중 입니다 😆");
+
   return (
     <>
       <DetailContainer>
@@ -105,6 +109,7 @@ const BookDetailPage = () => {
                   dispatch(
                     rentalActios.setRental(rentalRemove(rental, itemData[0].no))
                   );
+                  notifyReturn();
                 }}
               >
                 반납하기
@@ -113,6 +118,7 @@ const BookDetailPage = () => {
               <button
                 onClick={() => {
                   dispatch(rentalActios.setRental([...rental, itemData[0]]));
+                  notifyRental();
                 }}
               >
                 대여하기
@@ -121,6 +127,20 @@ const BookDetailPage = () => {
           </div>
           {/* <NewButton size="xl">대여하기</NewButton> */}
         </DetaileContents>
+        <AlertBox>
+          <ToastContainer
+            position="bottom-right" // 알람 위치 지정
+            autoClose={2000} // 자동 off 시간
+            hideProgressBar={false} // 진행시간바 숨김
+            closeOnClick // 클릭으로 알람 닫기
+            rtl={false} // 알림 좌우 반전
+            pauseOnFocusLoss // 화면을 벗어나면 알람 정지
+            draggable // 드래그 가능
+            pauseOnHover // 마우스를 올리면 알람 정지
+            theme="light"
+            limit={1} // 알람 개수 제한
+          />
+        </AlertBox>
       </DetailContainer>
     </>
   );
@@ -233,4 +253,13 @@ const DetaileContents = styled.div`
       border-radius: 50px;
     }
   }
+`;
+
+const AlertBox = styled.div`
+  --toastify-color-progress-light: linear-gradient(
+    to right,
+    #386941,
+    #ffe053,
+    #ff6737
+  );
 `;
