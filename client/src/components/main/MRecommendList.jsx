@@ -1,14 +1,14 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import RImage from "../../assets/images/편집자 추천 책.png";
 import Button from "../common/Button";
 import { FaHeart } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
 const MRecommendList = ({ position }) => {
   const navigate = useNavigate();
   const goDetail = () => {
-    navigate(`/category/1`);
+    navigate(`/category`);
   };
   return (
     <>
@@ -70,7 +70,9 @@ const MRecommendList = ({ position }) => {
                   </span>
                   좋아요
                 </Button>
-                <Button size="lg">자세히 보기</Button>
+                <p onClick={goDetail}>
+                  <Button size="lg">자세히 보기</Button>
+                </p>
               </div>
             </div>
             <div className="recommend-color-box"></div>
