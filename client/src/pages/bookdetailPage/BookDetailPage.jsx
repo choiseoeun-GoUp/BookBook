@@ -5,7 +5,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { rentalActios } from "../../utils/rentalSlice";
 
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { FaRegHeart } from "react-icons/fa";
@@ -66,6 +66,7 @@ const BookDetailPage = () => {
     BookImage6,
   ];
   const chosenImage = images[Math.floor(Math.random() * images.length)];
+
   return (
     <>
       <DetailContainer>
@@ -108,55 +109,59 @@ const BookDetailPage = () => {
                 {itemData[0] && itemData[0].cn_intro}
               </div>
             </div>
+          </section>
+          <div className="button-box">
             {itemData[0] && itemData[0].rsvt_noppl > 11 ? (
               <p className="rsvt-alert">10명 이상으로 대여가 불가능합니다</p>
             ) : (
               ""
             )}
-          </section>
-          <div className="button-box">
-            <div color="Gray_030" size="md" className="button-rsvt">
-              현재 대여 인원 :{" "}
+            <div className="button-inner-box">
+              <div color="Gray_030" size="md" className="button-rsvt">
+                현재 대여 인원 :{" "}
+                {itemData[0] &&
+                  itemData[0].rsvt_noppl +
+                    rental.filter((el) => Number(id) === el.no).length}
+              </div>
               {itemData[0] &&
-                itemData[0].rsvt_noppl +
-                  rental.filter((el) => Number(id) === el.no).length}
+              itemData[0].rsvt_noppl +
+                rental.filter((el) => Number(id) === el.no).length >
+                9 ? (
+                <Button disabled size="xl">
+                  대여하기
+                </Button>
+              ) : rental.filter((el) => Number(id) === el.no).length === 1 ? (
+                <button
+                  className="return-btn"
+                  onClick={() => {
+                    dispatch(
+                      rentalActios.setRental(
+                        rentalRemove(rental, itemData[0].no)
+                      )
+                    );
+                    notifyReturn();
+                  }}
+                >
+                  <span>
+                    <IoCaretBack className="back-icon" size={20} />
+                  </span>
+                  반납하기
+                </button>
+              ) : (
+                <button
+                  className="rental-btn"
+                  onClick={() => {
+                    dispatch(rentalActios.setRental([...rental, itemData[0]]));
+                    notifyRental();
+                  }}
+                >
+                  <span>
+                    <IoAddCircleSharp className="back-icon" size={20} />
+                  </span>
+                  대여하기
+                </button>
+              )}
             </div>
-            {itemData[0] &&
-            itemData[0].rsvt_noppl +
-              rental.filter((el) => Number(id) === el.no).length >
-              9 ? (
-              <Button disabled size="xl">
-                대여하기
-              </Button>
-            ) : rental.filter((el) => Number(id) === el.no).length === 1 ? (
-              <button
-                className="return-btn"
-                onClick={() => {
-                  dispatch(
-                    rentalActios.setRental(rentalRemove(rental, itemData[0].no))
-                  );
-                  notifyReturn();
-                }}
-              >
-                <span>
-                  <IoCaretBack className="back-icon" size={20} />
-                </span>
-                반납하기
-              </button>
-            ) : (
-              <button
-                className="rental-btn"
-                onClick={() => {
-                  dispatch(rentalActios.setRental([...rental, itemData[0]]));
-                  notifyRental();
-                }}
-              >
-                <span>
-                  <IoAddCircleSharp className="back-icon" size={20} />
-                </span>
-                대여하기
-              </button>
-            )}
           </div>
         </DetaileContents>
       </DetailContainer>
@@ -257,75 +262,67 @@ const DetaileContents = styled.div`
     }
   }
   .contents-box {
-    margin-bottom: 40px;
     .book-info-box {
       font-size: ${({ theme }) => theme.fontSizes.base};
-      /* display: -webkit-box;
-      display: -ms-flexbox;
-      display: box;
-      margin-top: 1px;
-      max-height: 440px; */
-      /* min-height: 300px; */
-      /* overflow: hidden;
-      vertical-align: top;
-      text-overflow: ellipsis;
-      word-break: break-all;
-      -webkit-box-orient: vertical;
-      -webkit-line-clamp: 12; */
+      max-height: 400px;
+      overflow: scroll;
     }
-  }
-  .rsvt-alert {
-    color: ${({ theme }) => theme.colors.Orange_040};
-    text-align: right;
-    margin-right: 60px;
   }
   .button-box {
-    display: flex;
-    justify-content: space-between;
     margin-bottom: 5px;
-    .button-rsvt {
-      font-size: ${({ theme }) => theme.fontSizes.base};
-      background-color: ${({ theme }) => theme.colors.Gray_020};
-      padding: 8px 50px;
-      border-radius: 50px;
+    .rsvt-alert {
+      color: ${({ theme }) => theme.colors.Orange_040};
+      text-align: right;
+      margin-right: 60px;
     }
-    .return-btn {
-      margin: 0;
-      border: 2px solid ${({ theme }) => theme.colors.Orange_040};
-      cursor: pointer;
-      border-radius: 50px;
-      font-size: ${({ theme }) => theme.fontSizes.small};
-      padding: 8px 140px;
-      color: #ff6737;
-      background: #fff;
-      &:active,
-      &:hover {
-        color: #ffffff;
-        background: #ff6737;
+    .button-inner-box {
+      display: flex;
+      justify-content: space-between;
+
+      .button-rsvt {
+        font-size: ${({ theme }) => theme.fontSizes.base};
+        background-color: ${({ theme }) => theme.colors.Gray_020};
+        padding: 8px 50px;
+        border-radius: 50px;
       }
-      .back-icon {
-        position: relative;
-        top: 3px;
-      }
-    }
-    .rental-btn {
-      margin: 0;
-      border: 2px solid ${({ theme }) => theme.colors.Orange_040};
-      cursor: pointer;
-      border-radius: 50px;
-      font-size: ${({ theme }) => theme.fontSizes.small};
-      padding: 8px 140px;
-      color: #ffffff;
-      background: #ff6737;
-      &:active,
-      &:hover {
+      .return-btn {
+        margin: 0;
+        border: 2px solid ${({ theme }) => theme.colors.Orange_040};
+        cursor: pointer;
+        border-radius: 50px;
+        font-size: ${({ theme }) => theme.fontSizes.small};
+        padding: 8px 140px;
         color: #ff6737;
         background: #fff;
+        &:active,
+        &:hover {
+          color: #ffffff;
+          background: #ff6737;
+        }
+        .back-icon {
+          position: relative;
+          top: 3px;
+        }
       }
-      .back-icon {
-        position: relative;
-        top: 3px;
-        left: -3px;
+      .rental-btn {
+        margin: 0;
+        border: 2px solid ${({ theme }) => theme.colors.Orange_040};
+        cursor: pointer;
+        border-radius: 50px;
+        font-size: ${({ theme }) => theme.fontSizes.small};
+        padding: 8px 140px;
+        color: #ffffff;
+        background: #ff6737;
+        &:active,
+        &:hover {
+          color: #ff6737;
+          background: #fff;
+        }
+        .back-icon {
+          position: relative;
+          top: 3px;
+          left: -3px;
+        }
       }
     }
   }

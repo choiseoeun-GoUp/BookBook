@@ -84,8 +84,8 @@ const CategoryPage = ({ itemData }) => {
           {viewAll ? (
             <Pagination
               activePage={page && page}
-              itemsCountPerPage="9"
-              totalItemsCount={itemData.totalCount}
+              itemsCountPerPage={9}
+              totalItemsCount={itemData.totalCount && itemData.totalCount}
               pageRangeDisplayed={5}
               prevPageText={"‹"}
               nextPageText={"›"}
