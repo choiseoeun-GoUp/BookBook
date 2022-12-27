@@ -6,12 +6,10 @@ import storage from "redux-persist/lib/storage";
 import { persistReducer } from "redux-persist";
 import thunk from "redux-thunk";
 
-import counterReducer from "./counterSlice";
 import rentalReducer from "./rentalSlice";
 import pageReducer from "./pageSlice";
 
 const reducers = combineReducers({
-  counter: counterReducer,
   rental: rentalReducer,
   page: pageReducer,
 });
