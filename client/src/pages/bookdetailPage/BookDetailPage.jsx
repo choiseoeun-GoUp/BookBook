@@ -2,17 +2,22 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useParams, useNavigate } from "react-router-dom";
 
-import { FaRegHeart } from "react-icons/fa";
-import { IoCaretBack, IoAddCircleSharp } from "react-icons/io5";
-
-import Image from "../../assets/images/대여목록 책.png";
-import Button from "../../components/common/Button";
-
 import { useDispatch, useSelector } from "react-redux";
 import { rentalActios } from "../../utils/rentalSlice";
 
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+import { FaRegHeart } from "react-icons/fa";
+import { IoCaretBack, IoAddCircleSharp } from "react-icons/io5";
+
+import Button from "../../components/common/Button";
+import BookImage1 from "../../assets/images/책 표지1.png";
+import BookImage2 from "../../assets/images/책 표지2.png";
+import BookImage3 from "../../assets/images/책 표지3.png";
+import BookImage4 from "../../assets/images/책 표지4.png";
+import BookImage5 from "../../assets/images/책 표지5.png";
+import BookImage6 from "../../assets/images/책 표지6.png";
 
 const BookDetailPage = () => {
   const { id } = useParams();
@@ -52,6 +57,15 @@ const BookDetailPage = () => {
     navigate(`/category`);
   };
 
+  const images = [
+    BookImage1,
+    BookImage2,
+    BookImage3,
+    BookImage4,
+    BookImage5,
+    BookImage6,
+  ];
+  const chosenImage = images[Math.floor(Math.random() * images.length)];
   return (
     <>
       <DetailContainer>
@@ -59,7 +73,7 @@ const BookDetailPage = () => {
           <p className="back-btn" onClick={goDetail}>
             되돌아가기
           </p>
-          <img src={Image} alt="책 표지" />
+          <img src={chosenImage} alt={itemData[0] && itemData[0].ebk_nm} />
         </DetailImage>
         <DetaileContents>
           <section>
@@ -170,15 +184,20 @@ const DetailContainer = styled.section`
 
 const DetailImage = styled.div`
   flex: 1 1 0;
-  margin-right: 20px;
+  margin-right: 40px;
   .back-btn {
     font-size: ${({ theme }) => theme.fontSizes.lg};
     margin-bottom: 20px;
     cursor: pointer;
+    &:hover {
+      color: ${({ theme }) => theme.colors.Orange_040};
+    }
   }
   img {
-    min-width: 450px;
-    max-height: 700px;
+    min-width: 500px;
+    max-width: 500px;
+    max-height: 740px;
+    min-height: 740px;
   }
 `;
 const DetaileContents = styled.div`

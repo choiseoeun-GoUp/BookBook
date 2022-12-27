@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-import RentalListImage from "../../assets/images/대여목록 책.png";
-import RentalListImage2 from "../../assets/images/메인 캐러셀1.png";
+// import BookImage1 from "../../assets/images/대여목록 책.png";
+import BookImage1 from "../../assets/images/책 표지1.png";
+import BookImage2 from "../../assets/images/책 표지2.png";
+import BookImage3 from "../../assets/images/책 표지3.png";
+import BookImage4 from "../../assets/images/책 표지4.png";
+import BookImage5 from "../../assets/images/책 표지5.png";
+import BookImage6 from "../../assets/images/책 표지6.png";
 import RentalMark from "../../assets/images/대여마크.png";
 import { FaHeart } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const CategoryItem = ({ data }) => {
   const navigate = useNavigate();
@@ -14,6 +19,15 @@ const CategoryItem = ({ data }) => {
   };
   const rental = useSelector((state) => state.rental.rentalValue);
 
+  const images = [
+    BookImage1,
+    BookImage2,
+    BookImage3,
+    BookImage4,
+    BookImage5,
+    BookImage6,
+  ];
+  const chosenImage = images[Math.floor(Math.random() * images.length)];
   return (
     <>
       <ItemBox>
@@ -24,7 +38,7 @@ const CategoryItem = ({ data }) => {
         )}
 
         <img
-          src={RentalListImage2}
+          src={chosenImage}
           className="rental-image"
           alt={data.ebk_nm}
           onClick={goDetail}
@@ -58,7 +72,7 @@ const ItemBox = styled.div`
     width: 100%;
     height: 420px;
     overflow: hidden;
-    border: 1px solid ${({ theme }) => theme.colors.Gray_010};
+    border: 1px solid ${({ theme }) => theme.colors.Gray_020};
     cursor: pointer;
   }
   .bottom-contents-info {

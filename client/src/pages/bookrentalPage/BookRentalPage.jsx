@@ -1,25 +1,17 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
-import RentalListImage from "../../assets/images/대여목록 책.png";
-import { IoCaretBack } from "react-icons/io5";
-import { useDispatch, useSelector } from "react-redux";
-import { rentalActios } from "../../utils/rentalSlice";
+import { useSelector } from "react-redux";
 
-import { toast } from "react-toastify";
+import RentalItem from "../../components/rental/RentalItem";
 
 const BookRentalPage = () => {
-  const notify = () => toast("반납하는 중 입니다 🤔");
-  const dispatch = useDispatch();
   const rental = useSelector((state) => state.rental.rentalValue);
-  const rentalRemove = (el, value) => {
-    return el.filter((ele) => {
-      return ele.no !== value;
-    });
-  };
+
   useEffect(() => {
     let vh = document.body.offsetHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   }, []);
+
   return (
     <>
       <BookRentalList>
@@ -28,25 +20,7 @@ const BookRentalPage = () => {
         </h2>
         <BookList>
           {rental.map((el, index) => (
-            <div className="itemgrid" key={index}>
-              <img src={RentalListImage} alt="책이미지" />
-              <div className="best-cotents">
-                <h3>{el.ebk_nm}</h3>
-                <p>{el.aut_nm}</p>
-              </div>
-              <button
-                className="return-btn"
-                onClick={() => {
-                  dispatch(rentalActios.setRental(rentalRemove(rental, el.no)));
-                  notify();
-                }}
-              >
-                <span>
-                  <IoCaretBack className="back-icon" size={20} />
-                </span>
-                반납하기
-              </button>
-            </div>
+            <RentalItem data={el} key={index} />
           ))}
         </BookList>
       </BookRentalList>
@@ -85,48 +59,6 @@ const BookList = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 30px;
-
-  .itemgrid {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    img {
-      width: 100%;
-      height: 420px;
-      overflow: hidden;
-      border: 2px solid ${({ theme }) => theme.colors.Gray_020};
-    }
-    .best-cotents {
-      text-align: center;
-      padding: 20px 0;
-      height: 130px;
-      h3 {
-        font-weight: bold;
-        font-size: ${({ theme }) => theme.fontSizes.lg};
-      }
-    }
-
-    .return-btn {
-      margin: 0;
-      border: 2px solid ${({ theme }) => theme.colors.Orange_040};
-      cursor: pointer;
-      border-radius: 50px;
-      font-size: ${({ theme }) => theme.fontSizes.small};
-      padding: 8px 100px;
-      color: #ff6737;
-      background: #fff;
-      &:active,
-      &:hover {
-        color: #ffffff;
-        background: #ff6737;
-      }
-      .back-icon {
-        position: relative;
-        top: 3px;
-      }
-    }
-  }
 `;
 
 const OutLine = styled.div`
