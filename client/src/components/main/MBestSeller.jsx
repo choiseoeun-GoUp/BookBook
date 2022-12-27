@@ -7,8 +7,10 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "./Recommend.css";
-import BestImage from "../../assets/images/베스트셀러 책.png";
 import FirstBook from "../../assets/images/금메달.png";
+import BestImage from "../../assets/images/메인 캐러셀1.png";
+import BestImage2 from "../../assets/images/메인 캐러셀2.png";
+import BestImage3 from "../../assets/images/메인 캐러셀3.png";
 
 const MBestSeller = ({ position }) => {
   return (
@@ -62,19 +64,19 @@ const MBestSeller = ({ position }) => {
           </StyleSwipper>
           <StyleSwipper>
             <MBestBox>
-              <img src={BestImage} alt="베스트셀러2 이미지" />
+              <img src={BestImage2} alt="베스트셀러2 이미지" />
               <div className="best-cotents">
-                <h3>목포 여행 레시피</h3>
-                <p>양다솔</p>
+                <h3>마음의 문을 닫고 숨어버린 나에게</h3>
+                <p>비비비</p>
               </div>
             </MBestBox>
           </StyleSwipper>
           <StyleSwipper>
             <MBestBox>
-              <img src={BestImage} alt="베스트셀러3 이미지" />
+              <img src={BestImage3} alt="베스트셀러3 이미지" />
               <div className="best-cotents">
-                <h3>목포 여행 레시피</h3>
-                <p>양다솔</p>
+                <h3>모든 순간이 너였다</h3>
+                <p>최태환</p>
               </div>
             </MBestBox>
           </StyleSwipper>
@@ -140,6 +142,9 @@ const MBestBox = styled.div`
   img {
     overflow: hidden;
     z-index: 1;
+    max-height: 380px;
+    min-height: 380px;
+    min-width: 270px;
   }
   .best-cotents {
     text-align: center;
