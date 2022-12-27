@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { FaRegHeart } from "react-icons/fa";
-import { IoRemoveCircle, IoAddCircleSharp } from "react-icons/io5";
+import { IoRemoveCircle, IoAddCircleSharp, IoBackspace } from "react-icons/io5";
 
 import Button from "../../components/common/Button";
 import BookImage1 from "../../assets/images/책 표지1.png";
@@ -72,6 +72,9 @@ const BookDetailPage = () => {
       <DetailContainer>
         <DetailImage>
           <p className="back-btn" onClick={goDetail}>
+            <span>
+              <IoBackspace size={26} />
+            </span>
             되돌아가기
           </p>
           <img src={chosenImage} alt={itemData[0] && itemData[0].ebk_nm} />
@@ -198,6 +201,11 @@ const DetailImage = styled.div`
     &:hover {
       color: ${({ theme }) => theme.colors.Orange_040};
     }
+    span {
+      position: relative;
+      top: 5px;
+      left: -3px;
+    }
   }
   img {
     min-width: 500px;
@@ -285,11 +293,6 @@ const DetaileContents = styled.div`
         background-color: ${({ theme }) => theme.colors.Gray_020};
         padding: 8px 50px;
         border-radius: 50px;
-      }
-      .back-icon {
-        position: relative;
-        top: 3px;
-        left: -1px;
       }
     }
   }
