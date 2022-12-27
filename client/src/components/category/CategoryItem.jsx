@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
-// import BookImage1 from "../../assets/images/대여목록 책.png";
+import { useSelector } from "react-redux";
+
 import BookImage1 from "../../assets/images/책 표지1.png";
 import BookImage2 from "../../assets/images/책 표지2.png";
 import BookImage3 from "../../assets/images/책 표지3.png";
@@ -10,7 +11,6 @@ import BookImage5 from "../../assets/images/책 표지5.png";
 import BookImage6 from "../../assets/images/책 표지6.png";
 import RentalMark from "../../assets/images/대여마크.png";
 import { FaHeart } from "react-icons/fa";
-import { useSelector } from "react-redux";
 
 const CategoryItem = ({ data }) => {
   const navigate = useNavigate();

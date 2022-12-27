@@ -24,7 +24,7 @@ const VERSION = {
   `,
 };
 
-const Button = ({ disabled, size, version, children }) => {
+const Button = ({ disabled, size, version, onClick, children }) => {
   const sizeStyle = SIZES[size];
   const versionStyle = VERSION[version];
   return (
@@ -32,6 +32,7 @@ const Button = ({ disabled, size, version, children }) => {
       disabled={disabled}
       sizeStyle={sizeStyle}
       versionStyle={versionStyle}
+      onClick={onClick}
     >
       {children}
     </StyledButton>

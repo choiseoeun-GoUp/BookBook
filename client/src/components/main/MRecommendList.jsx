@@ -70,9 +70,9 @@ const MRecommendList = ({ position }) => {
                   </span>
                   좋아요
                 </Button>
-                <p onClick={goDetail}>
-                  <Button size="lg">자세히 보기</Button>
-                </p>
+                <Button size="lg" onClick={goDetail}>
+                  자세히 보기
+                </Button>
               </div>
             </div>
             <div className="recommend-color-box"></div>

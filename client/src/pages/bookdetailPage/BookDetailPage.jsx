@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 import { FaRegHeart } from "react-icons/fa";
-import { IoCaretBack, IoAddCircleSharp } from "react-icons/io5";
+import { IoRemoveCircle, IoAddCircleSharp } from "react-icons/io5";
 
 import Button from "../../components/common/Button";
 import BookImage1 from "../../assets/images/책 표지1.png";
@@ -131,8 +131,9 @@ const BookDetailPage = () => {
                   대여하기
                 </Button>
               ) : rental.filter((el) => Number(id) === el.no).length === 1 ? (
-                <button
-                  className="return-btn"
+                <Button
+                  size="xl"
+                  version="reverse"
                   onClick={() => {
                     dispatch(
                       rentalActios.setRental(
@@ -143,13 +144,13 @@ const BookDetailPage = () => {
                   }}
                 >
                   <span>
-                    <IoCaretBack className="back-icon" size={20} />
+                    <IoRemoveCircle className="back-icon" size={20} />
                   </span>
                   반납하기
-                </button>
+                </Button>
               ) : (
-                <button
-                  className="rental-btn"
+                <Button
+                  size="xl"
                   onClick={() => {
                     dispatch(rentalActios.setRental([...rental, itemData[0]]));
                     notifyRental();
@@ -159,7 +160,7 @@ const BookDetailPage = () => {
                     <IoAddCircleSharp className="back-icon" size={20} />
                   </span>
                   대여하기
-                </button>
+                </Button>
               )}
             </div>
           </div>
@@ -285,44 +286,10 @@ const DetaileContents = styled.div`
         padding: 8px 50px;
         border-radius: 50px;
       }
-      .return-btn {
-        margin: 0;
-        border: 2px solid ${({ theme }) => theme.colors.Orange_040};
-        cursor: pointer;
-        border-radius: 50px;
-        font-size: ${({ theme }) => theme.fontSizes.small};
-        padding: 8px 140px;
-        color: #ff6737;
-        background: #fff;
-        &:active,
-        &:hover {
-          color: #ffffff;
-          background: #ff6737;
-        }
-        .back-icon {
-          position: relative;
-          top: 3px;
-        }
-      }
-      .rental-btn {
-        margin: 0;
-        border: 2px solid ${({ theme }) => theme.colors.Orange_040};
-        cursor: pointer;
-        border-radius: 50px;
-        font-size: ${({ theme }) => theme.fontSizes.small};
-        padding: 8px 140px;
-        color: #ffffff;
-        background: #ff6737;
-        &:active,
-        &:hover {
-          color: #ff6737;
-          background: #fff;
-        }
-        .back-icon {
-          position: relative;
-          top: 3px;
-          left: -3px;
-        }
+      .back-icon {
+        position: relative;
+        top: 3px;
+        left: -1px;
       }
     }
   }

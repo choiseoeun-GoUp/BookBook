@@ -5,8 +5,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { rentalActios } from "../../utils/rentalSlice";
 
 import { toast } from "react-toastify";
-import { IoCaretBack } from "react-icons/io5";
+import { IoRemoveCircle } from "react-icons/io5";
 
+import Button from "../common/Button";
 import BookImage1 from "../../assets/images/책 표지1.png";
 import BookImage2 from "../../assets/images/책 표지2.png";
 import BookImage3 from "../../assets/images/책 표지3.png";
@@ -43,18 +44,19 @@ const RentalItem = ({ data }) => {
             <h3>{data.ebk_nm}</h3>
             <p>{data.aut_nm}</p>
           </div>
-          <button
-            className="return-btn"
+          <Button
+            size="lg"
+            version="reverse"
             onClick={() => {
               dispatch(rentalActios.setRental(rentalRemove(rental, data.no)));
               notify();
             }}
           >
             <span>
-              <IoCaretBack className="back-icon" size={20} />
+              <IoRemoveCircle className="back-icon" size={20} />
             </span>
             반납하기
-          </button>
+          </Button>
         </div>
       </RentalContainer>
     </>
@@ -84,25 +86,10 @@ const RentalContainer = styled.div`
         font-size: ${({ theme }) => theme.fontSizes.lg};
       }
     }
-
-    .return-btn {
-      margin: 0;
-      border: 2px solid ${({ theme }) => theme.colors.Orange_040};
-      cursor: pointer;
-      border-radius: 50px;
-      font-size: ${({ theme }) => theme.fontSizes.small};
-      padding: 8px 100px;
-      color: #ff6737;
-      background: #fff;
-      &:active,
-      &:hover {
-        color: #ffffff;
-        background: #ff6737;
-      }
-      .back-icon {
-        position: relative;
-        top: 3px;
-      }
+    .back-icon {
+      position: relative;
+      top: 3px;
+      left: -1px;
     }
   }
 `;
