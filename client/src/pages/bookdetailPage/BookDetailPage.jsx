@@ -21,13 +21,15 @@ import BookImage6 from "../../assets/images/책 표지6.png";
 
 const BookDetailPage = () => {
   const { id } = useParams();
+  const page = useSelector((state) => state.page.pageValue);
   const [itemData, setitemData] = useState([]);
   const getContents = () => {
     fetch(
-      `http://apis.data.go.kr/4050000/libebook/getLibebook?serviceKey=ivsTBybg%2FyaUtUrc5%2F6%2BJvWhOVLbJefA9Q9YegAX0e2vDPOrpN4KzJDQ8FmDDjB5eMwzlirugCRw%2BqEOQb3SOg%3D%3D&pageNo=1&numOfRows=30`
+      `http://apis.data.go.kr/4050000/libebook/getLibebook?serviceKey=ivsTBybg%2FyaUtUrc5%2F6%2BJvWhOVLbJefA9Q9YegAX0e2vDPOrpN4KzJDQ8FmDDjB5eMwzlirugCRw%2BqEOQb3SOg%3D%3D&pageNo=${page}&numOfRows=9`
     )
       .then((res) => res.json())
       .then((data) => {
+        console.log(data);
         setitemData(data.items.filter((el) => el.no === Number(id)));
       })
       .catch((e) => {
@@ -39,8 +41,8 @@ const BookDetailPage = () => {
     getContents();
     let vh = document.body.offsetHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
-  }, []);
-
+  }, [page]);
+  console.log(itemData);
   const rental = useSelector((state) => state.rental.rentalValue);
   const dispatch = useDispatch();
 
@@ -49,8 +51,8 @@ const BookDetailPage = () => {
       return ele.no !== value;
     });
   };
-  const notifyReturn = () => toast("반납하는 중 입니다 🤔");
-  const notifyRental = () => toast("대여하는 중 입니다 😆");
+  const notifyReturn = () => toast("반납이 완료되었습니다 🤔");
+  const notifyRental = () => toast("대여가 완료되었습니다 😆");
 
   const navigate = useNavigate();
   const goDetail = () => {
@@ -274,7 +276,7 @@ const DetaileContents = styled.div`
     .book-info-box {
       font-size: ${({ theme }) => theme.fontSizes.base};
       max-height: 400px;
-      overflow: scroll;
+      overflow: auto;
     }
   }
   .button-box {

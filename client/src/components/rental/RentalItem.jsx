@@ -24,7 +24,7 @@ const RentalItem = ({ data }) => {
     });
   };
 
-  const notify = () => toast("반납하는 중 입니다 🤔");
+  const notify = () => toast("반납이 완료되었습니다 🤔");
 
   const images = [
     BookImage1,
