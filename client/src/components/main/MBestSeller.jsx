@@ -50,7 +50,7 @@ const MBestSeller = ({ position }) => {
             },
           }}
           style={{
-            opacity: (position - 850) / 100,
+            opacity: (position - 750) / 100,
           }}
         >
           <StyleSwipper>
@@ -95,6 +95,7 @@ const MSecondContainer = styled.section`
     text-align: center;
     margin-bottom: 50px;
     margin-top: 150px;
+    transition: 1.5s;
     h2 {
       font-size: ${({ theme }) => theme.fontSizes.titleBase};
       font-family: "GodoM", "Arial", sans-serif;
@@ -110,6 +111,7 @@ const SwiperBox = styled(Swiper)`
   max-width: 1280px;
   position: relative;
   padding: 50px 0;
+  transition: 1.5s;
   .first-mark {
     position: absolute;
     top: 10%;

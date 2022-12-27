@@ -16,7 +16,7 @@ const MRecommendList = ({ position }) => {
         <div
           className="Recommend-title"
           style={{
-            opacity: (position - 1200) / 50,
+            opacity: (position - 1400) / 50,
           }}
         >
           <h2>편집자 추천 Book</h2>
@@ -95,6 +95,7 @@ const MThirdContainer = styled.section`
     margin-bottom: 50px;
     text-align: center;
     margin-top: 200px;
+    transition: 1.5s;
     h2 {
       font-size: ${({ theme }) => theme.fontSizes.titleS};
       font-family: "GodoM", "Arial", sans-serif;
@@ -111,6 +112,7 @@ const RcommendContents = styled.div`
   justify-content: center;
   align-items: center;
   max-width: 1280px;
+  transition: 1.5s;
   .recommend-image {
     flex: 1 1 0;
     margin-right: 70px;
