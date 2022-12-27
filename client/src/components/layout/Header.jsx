@@ -37,14 +37,7 @@ const Header = () => {
               Book Rental
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              to="/wishlist"
-              className={({ isActive }) => (isActive ? "selected" : "not")}
-            >
-              WishList
-            </NavLink>
-          </li>
+          <li className="not">WishList</li>
         </HMenu>
       </HLaptop>
     </HeaderContainer>

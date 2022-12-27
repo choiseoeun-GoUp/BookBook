@@ -23,9 +23,7 @@ const Footer = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/wishlist" className="base">
-              WishList
-            </NavLink>
+            <NavLink className="base">WishList</NavLink>
           </li>
         </ul>
         <p className="copy">
