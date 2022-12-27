@@ -6,8 +6,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { pageActios } from "../../utils/pageSlice";
 
 const CategoryPage = ({ itemData }) => {
-  const [gnr, setGnr] = useState("");
+  const [gnr, setGnr] = useState("All");
   const [viewAll, setViewAll] = useState(true);
+
   const page = useSelector((state) => state.page.pageValue);
 
   const dispatch = useDispatch();
@@ -25,7 +26,15 @@ const CategoryPage = ({ itemData }) => {
           <CategoryTabList>
             <h2>Category</h2>
             <ul>
-              <li onClick={() => setViewAll(true)}>All</li>
+              <li
+                className={"All" === gnr ? "focused" : ""}
+                onClick={() => {
+                  setViewAll(true);
+                  setGnr("All");
+                }}
+              >
+                All
+              </li>
               {itemData.items &&
                 itemData.items
                   .filter(
@@ -38,6 +47,7 @@ const CategoryPage = ({ itemData }) => {
                   .map((el, index) => (
                     <li
                       key={index}
+                      className={el.gnr === gnr ? "focused" : ""}
                       onClick={() => {
                         setGnr(el.gnr);
                         setViewAll(false);
@@ -135,6 +145,11 @@ const CategoryTabList = styled.div`
         color: ${({ theme }) => theme.colors.Orange_040};
       }
     }
+    .focused {
+      color: ${({ theme }) => theme.colors.Orange_040};
+      /* background-color: ${({ theme }) => theme.colors.Gray_040}; */
+      transition: 1s;
+    }
   }
 `;
 const CategoryContents = styled.div`
@@ -149,6 +164,7 @@ const CategoryContents = styled.div`
 `;
 
 const CategoryPaging = styled.div`
+  margin-top: 50px;
   .pagination {
     display: flex;
     justify-content: center;
@@ -162,8 +178,8 @@ const CategoryPaging = styled.div`
 
   ul.pagination li {
     display: inline-block;
-    width: 27px;
-    height: 27px;
+    width: 50px;
+    height: 30px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -172,16 +188,16 @@ const CategoryPaging = styled.div`
   }
 
   ul.pagination li:first-child a {
-    color: #437bec;
+    color: ${({ theme }) => theme.colors.Orange_040};
   }
   ul.pagination li:nth-child(2) a {
-    color: #437bec;
+    color: ${({ theme }) => theme.colors.Orange_040};
   }
   ul.pagination li:nth-last-child(2) a {
-    color: #437bec;
+    color: ${({ theme }) => theme.colors.Orange_040};
   }
   ul.pagination li:last-child a {
-    color: #437bec;
+    color: ${({ theme }) => theme.colors.Orange_040};
   }
 
   ul.pagination li a {
@@ -196,7 +212,7 @@ const CategoryPaging = styled.div`
   }
 
   ul.pagination li.active {
-    background-color: #437bec;
+    background-color: ${({ theme }) => theme.colors.Orange_040};
   }
 
   ul.pagination li a:hover,
@@ -206,7 +222,7 @@ const CategoryPaging = styled.div`
   .page-selection {
     width: 48px;
     height: 30px;
-    color: #437bec;
+    color: ${({ theme }) => theme.colors.Orange_040};
   }
 `;
 const OutLine = styled.div`

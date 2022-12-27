@@ -1,19 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import RentalListImage from "../../assets/images/대여목록 책.png";
-import RentalListImage2 from "../../assets/images/베스트셀러 책.png";
+import RentalListImage2 from "../../assets/images/메인 캐러셀1.png";
 import RentalMark from "../../assets/images/대여마크.png";
-import { FaHeart, FaRegHeart } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { rentalActios } from "../../utils/rentalSlice";
 
 const CategoryItem = ({ data }) => {
   const navigate = useNavigate();
   const goDetail = () => {
     data && navigate(`/category/${data.no}`);
   };
-  const dispatch = useDispatch();
   const rental = useSelector((state) => state.rental.rentalValue);
 
   return (
@@ -26,7 +24,7 @@ const CategoryItem = ({ data }) => {
         )}
 
         <img
-          src={RentalListImage}
+          src={RentalListImage2}
           className="rental-image"
           alt={data.ebk_nm}
           onClick={goDetail}
@@ -38,7 +36,7 @@ const CategoryItem = ({ data }) => {
           </div>
           <div className="best-button">
             <Button>
-              <FaHeart className="heartFill" size={27} color="#CECECE" />
+              <FaHeart className="heart" />
             </Button>
           </div>
         </div>
@@ -61,7 +59,6 @@ const ItemBox = styled.div`
     height: 420px;
     overflow: hidden;
     border: 1px solid ${({ theme }) => theme.colors.Gray_010};
-    /* border-radius: 20px; */
     cursor: pointer;
   }
   .bottom-contents-info {
@@ -81,8 +78,6 @@ const ItemBox = styled.div`
         text-overflow: ellipsis;
       }
     }
-    .best-button {
-    }
   }
 `;
 
@@ -95,8 +90,15 @@ const Button = styled.button`
   align-items: center;
   border: 2px solid ${({ theme }) => theme.colors.Gray_020};
   background-color: #fff;
+  .heart {
+    font-size: 26px;
+    color: #cecece;
+  }
   &:hover {
     border: 2px solid ${({ theme }) => theme.colors.Orange_040};
     background-color: ${({ theme }) => theme.colors.Orange_040};
+    .heart {
+      color: #fff;
+    }
   }
 `;
