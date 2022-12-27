@@ -1,10 +1,15 @@
 import React from "react";
 import styled from "styled-components";
 import RImage from "../../assets/images/편집자 추천 책.png";
-import NewButton from "../common/NewButton";
+import Button from "../common/Button";
 import { FaHeart } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const MRecommendList = ({ position }) => {
+  const navigate = useNavigate();
+  const goDetail = () => {
+    navigate(`/category/1`);
+  };
   return (
     <>
       <MThirdContainer>
@@ -28,13 +33,13 @@ const MRecommendList = ({ position }) => {
           <RInfoContainer>
             <div className="recommend-inner">
               <div className="title-box">
-                <h2>가난해 지지 않는 마음</h2>
+                <h2>디어 가브리엘</h2>
                 <div className="title-sub">
                   <p>
                     저자명 : <span>양다솔</span>
                   </p>
                   <p>
-                    출판사 : <span>놀</span>
+                    출판사 : <span>문학동네</span>
                   </p>
                 </div>
               </div>
@@ -59,13 +64,13 @@ const MRecommendList = ({ position }) => {
                 작가의 희비극을 담은 첫 에세이다. 독립출판물을 전시하고 판매하
               </div>
               <div className="button-box">
-                <NewButton version="reverse" size="md">
+                <Button version="reverse" size="md">
                   <span>
                     <FaHeart size={14} />
                   </span>
                   좋아요
-                </NewButton>
-                <NewButton size="lg">자세히 보기</NewButton>
+                </Button>
+                <Button size="lg">자세히 보기</Button>
               </div>
             </div>
             <div className="recommend-color-box"></div>
