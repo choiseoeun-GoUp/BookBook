@@ -1,12 +1,12 @@
 import React from "react";
 import styled, { css } from "styled-components";
-import { darken } from "polished";
+
 const SIZES = {
   sm: css`
-    --button-padding: 8px 40px;
+    --button-padding: 8px 30px;
   `,
   md: css`
-    --button-padding: 8px 60px;
+    --button-padding: 8px 58px;
   `,
   lg: css`
     --button-padding: 8px 90px;
@@ -15,46 +15,56 @@ const SIZES = {
     --button-padding: 8px 140px;
   `,
 };
+const VERSION = {
+  reverse: css`
+    --button-font-color: ${({ theme }) => theme.colors.Orange_040};
+    --button-bg-color: #ffffff;
+    --button-hover-font-color: #ffffff;
+    --button-hover-bg-color: ${({ theme }) => theme.colors.Orange_040};
+  `,
+};
 
-const StyledButton = styled.button`
-  /* 공통 스타일 */
-  display: inline-flex;
-  outline: none;
-  border-radius: 50px;
-  color: white;
-  cursor: pointer;
-  font-size: ${({ theme }) => theme.fontSizes.small};
-  line-height: 1rem;
-  padding: var(--button-padding, 12px 16px);
-  ${(p) => p.sizeStyle}
-  ${(props) => {
-    const selected = props.theme.colors[props.color];
-    const fontColor = props.theme.colors[props.fontColor];
-    return css`
-      background: ${selected};
-      color: ${fontColor};
-      border: 2px solid ${selected};
-
-      &:hover {
-        background: ${darken(0.1, selected)};
-      }
-      &:active {
-        background: ${darken(0.1, selected)};
-      }
-    `;
-  }}
-`;
-
-function Button({ children, size, ...rest }) {
+const Button = ({ disabled, size, version, children }) => {
   const sizeStyle = SIZES[size];
+  const versionStyle = VERSION[version];
   return (
-    <StyledButton sizeStyle={sizeStyle} {...rest}>
+    <StyledButton
+      disabled={disabled}
+      sizeStyle={sizeStyle}
+      versionStyle={versionStyle}
+    >
       {children}
     </StyledButton>
   );
-}
-Button.defaultProps = {
-  color: "Orange_040",
-  border: "Gray_080",
 };
+
+const StyledButton = styled.button`
+  ${(p) => p.sizeStyle}
+  ${(p) => p.versionStyle}
+
+  margin: 0;
+  border: 2px solid ${({ theme }) => theme.colors.Orange_040};
+  cursor: pointer;
+  border-radius: 50px;
+  font-size: ${({ theme }) => theme.fontSizes.small};
+  padding: var(--button-padding, 12px 16px);
+  color: var(--button-font-color, #ffffff);
+  background: var(--button-bg-color, #ff6737);
+  &:active,
+  &:hover {
+    color: var(--button-hover-font-color, #ff6737);
+    background: var(--button-hover-bg-color, #fff);
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.5;
+    background: var(--button-bg-color, #ff6737);
+    color: var(--button-font-color, #ffffff);
+  }
+  span {
+    margin-right: 6px;
+  }
+`;
+
 export default Button;
