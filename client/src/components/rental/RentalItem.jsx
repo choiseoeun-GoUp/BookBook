@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { rentalActios } from "../../utils/rentalSlice";
 
@@ -24,6 +24,11 @@ const RentalItem = ({ data }) => {
     });
   };
 
+  const navigate = useNavigate();
+  const goDetail = () => {
+    data && navigate(`/category/${data.no}`);
+  };
+
   const notify = () => toast("반납이 완료되었습니다 🤔");
 
   const images = [
@@ -39,7 +44,7 @@ const RentalItem = ({ data }) => {
     <>
       <RentalContainer>
         <div className="itemgrid">
-          <img src={chosenImage} alt={data.ebk_nm} />
+          <img src={chosenImage} alt={data.ebk_nm} onClick={goDetail} />
           <div className="best-cotents">
             <h3>{data.ebk_nm}</h3>
             <p>{data.aut_nm}</p>
@@ -76,6 +81,7 @@ const RentalContainer = styled.div`
       height: 420px;
       overflow: hidden;
       border: 2px solid ${({ theme }) => theme.colors.Gray_020};
+      cursor: pointer;
     }
     .best-cotents {
       text-align: center;
