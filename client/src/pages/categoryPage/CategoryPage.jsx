@@ -5,11 +5,20 @@ import Pagination from "react-js-pagination";
 import { useDispatch, useSelector } from "react-redux";
 import { pageActios } from "../../utils/pageSlice";
 
-const CategoryPage = ({ itemData }) => {
+const CategoryPage = ({
+  itemData,
+  setRankSort,
+  rankSort,
+  setRankValue,
+  rankValue,
+}) => {
   const [gnr, setGnr] = useState("All");
   const [viewAll, setViewAll] = useState(true);
-
   const page = useSelector((state) => state.page.pageValue);
+
+  const rankArr =
+    itemData.items &&
+    [...itemData.items].sort((a, b) => b.rsvt_noppl - a.rsvt_noppl);
 
   const dispatch = useDispatch();
   const handlePageChange = (e) => {
@@ -22,6 +31,24 @@ const CategoryPage = ({ itemData }) => {
   return (
     <>
       <CategoryContainer>
+        <section className="sort-box">
+          <select
+            className="sort-option"
+            value={rankValue}
+            onChange={(e) => {
+              setRankValue(e.target.value);
+              e.target.value === "none"
+                ? setRankSort(false)
+                : setRankSort(true);
+            }}
+          >
+            <option value="none">기본순</option>
+            <option value="대여 랭킹별">대여 랭킹별</option>
+          </select>
+          {/* <button className="sort-btn" onClick={() => setRankSort(!rankSort)}>
+            {!rankSort ? "대여 랭킹순으로 정렬" : "기본순으로 정렬"}
+          </button> */}
+        </section>
         <section className="category-content-box">
           <CategoryTabList>
             <h2>Category</h2>
@@ -60,14 +87,23 @@ const CategoryPage = ({ itemData }) => {
           </CategoryTabList>
           <CategoryContents>
             {viewAll
-              ? itemData.items &&
-                itemData.items.map((el) => {
-                  return (
-                    <div className="itemgrid" key={el.no}>
-                      <CategoryItem data={el} />
-                    </div>
-                  );
-                })
+              ? !rankSort
+                ? itemData.items &&
+                  itemData.items.map((el) => {
+                    return (
+                      <div className="itemgrid" key={el.no}>
+                        <CategoryItem data={el} />
+                      </div>
+                    );
+                  })
+                : rankArr &&
+                  rankArr.map((el) => {
+                    return (
+                      <div className="itemgrid" key={el.no}>
+                        <CategoryItem data={el} />
+                      </div>
+                    );
+                  })
               : itemData.items &&
                 itemData.items
                   .filter((el) => el.gnr === gnr)
@@ -115,6 +151,23 @@ const CategoryContainer = styled.section`
   align-items: center;
   flex-direction: column;
   padding: 50px 0 150px 0;
+  .sort-box {
+    width: 1280px;
+    text-align: right;
+    margin-bottom: 30px;
+    .sort-option {
+      padding: 5px 15px;
+      border-radius: 7px;
+    }
+    .sort-btn {
+      color: ${({ theme }) => theme.colors.Gray_050};
+      border: 1px solid transparent;
+      padding: 5px 20px;
+      background-color: ${({ theme }) => theme.colors.Gray_010};
+      border-radius: 20px;
+      cursor: pointer;
+    }
+  }
   .category-content-box {
     width: 1280px;
     min-height: 500px;
@@ -158,6 +211,7 @@ const CategoryContents = styled.div`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 30px;
+
   .itemgrid {
     position: relative;
   }

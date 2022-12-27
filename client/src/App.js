@@ -11,6 +11,8 @@ import { useSelector } from "react-redux";
 function App() {
   const [itemData, setitemData] = useState([]);
   const page = useSelector((state) => state.page.pageValue);
+  const [rankSort, setRankSort] = useState(false);
+  const [rankValue, setRankValue] = useState("none");
 
   const getContents = () => {
     fetch(
@@ -35,7 +37,15 @@ function App() {
         <Route index element={<MainPage />}></Route>
         <Route
           path="/category"
-          element={<CategoryPage itemData={itemData} />}
+          element={
+            <CategoryPage
+              itemData={itemData}
+              setRankSort={setRankSort}
+              rankSort={rankSort}
+              rankValue={rankValue}
+              setRankValue={setRankValue}
+            />
+          }
         ></Route>
         <Route path="/category/:id" element={<BookDetailPage />}></Route>
         <Route path="/wishlist" element={<WishListPage />}></Route>
