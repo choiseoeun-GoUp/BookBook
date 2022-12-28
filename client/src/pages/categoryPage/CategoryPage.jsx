@@ -284,7 +284,7 @@ const OutLine = styled.div`
   .bg-line-1 {
     width: 0.5px;
     min-height: calc(var(--vh, 1vh) * 100);
-    background-color: #eeeeee;
+    background-color: #e1e1e1;
     position: absolute;
     top: -100px;
     left: 45px;
@@ -292,7 +292,7 @@ const OutLine = styled.div`
   .bg-line-2 {
     width: 0.5px;
     height: calc(var(--vh, 1vh) * 100);
-    background-color: #eeeeee;
+    background-color: #e1e1e1;
     position: absolute;
     top: -100px;
     left: 196px;
@@ -300,7 +300,7 @@ const OutLine = styled.div`
   .bg-line-3 {
     width: 0.5px;
     height: calc(var(--vh, 1vh) * 100);
-    background-color: #eeeeee;
+    background-color: #e1e1e1;
     position: absolute;
     top: -100px;
     right: 150px;
@@ -308,7 +308,7 @@ const OutLine = styled.div`
   .bg-line-4 {
     width: 0.5px;
     height: calc(var(--vh, 1vh) * 100);
-    background-color: #eeeeee;
+    background-color: #e1e1e1;
     position: absolute;
     top: -100px;
     right: 310px;
@@ -317,7 +317,7 @@ const OutLine = styled.div`
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    border: 0.5px solid #eeeeee;
+    border: 0.5px solid #e1e1e1;
     position: absolute;
     top: 80px;
     right: 400px;

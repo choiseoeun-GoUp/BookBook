@@ -282,7 +282,7 @@ const OutLine = styled.div`
   .bg-line {
     width: 0.5px;
     min-height: 260%;
-    background-color: #eeeeee;
+    background-color: #e1e1e1;
     position: absolute;
     top: -100px;
   }
@@ -302,7 +302,7 @@ const OutLine = styled.div`
     width: 300px;
     height: 300px;
     border-radius: 50%;
-    border: 0.5px solid #eeeeee;
+    border: 0.5px solid #e1e1e1;
     position: absolute;
     top: 80px;
     right: 400px;
